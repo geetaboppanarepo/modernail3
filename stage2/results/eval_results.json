@@ -1,0 +1,796 @@
+{
+ "results": [
+  {
+   "case": "approval: return $348 headphones (over limit)",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "start_return",
+      "start_return"
+     ],
+     "executed": [],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "start_return",
+       "args": {
+        "order_id": "112-1111111-1111111",
+        "reason": "stopped working"
+       },
+       "result": {
+        "needs_confirmation": true,
+        "message": "Before running start_return on order 112-1111111-1111111, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words."
+       }
+      },
+      {
+       "tool": "start_return",
+       "args": {
+        "order_id": "112-1111111-1111111",
+        "reason": "stopped working",
+        "confirmed": true
+       },
+       "result": {
+        "pending_approval": true,
+        "request_id": "REQ-06d033e966bb",
+        "status": "PENDING_APPROVAL",
+        "deadline": "2026-10-12T18:19:43+00:00",
+        "message": "Not done yet: a human reviewer must approve this first (a $348.00 refund is at or over the $200.00 limit for automatic approval). It is saved as request REQ-06d033e966bb; a reviewer will decide by 2026-10-12T18:19:43+00:00 UTC. Tell the customer exactly that, give them the request number, and do NOT say it is done. Do not call start_return again for this order."
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"Return the headphones on order 112-1111111-1111111, they stopped working\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"start_return\", \"arguments\": \"{\\\"order_id\\\": \\\"112-1111111-1111111\\\", \\\"reason\\\": \\\"stopped working\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"needs_confirmation\\\": true, \\\"message\\\": \\\"Before running start_return on order 112-1111111-1111111, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}, {\"role\": \"user\", \"content\": \"yes, go ahead\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_1_0\", \"type\": \"function\", \"function\": {\"name\": \"start_return\", \"arguments\": \"{\\\"order_id\\\": \\\"112-1111111-1111111\\\", \\\"reason\\\": \\\"stopped working\\\", \\\"confirmed\\\": true}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_1_0\", \"content\": \"{\\\"pending_approval\\\": true, \\\"request_id\\\": \\\"REQ-06d033e966bb\\\", \\\"status\\\": \\\"PENDING_APPROVAL\\\", \\\"deadline\\\": \\\"2026-10-12T18:19:43+00:00\\\", \\\"message\\\": \\\"Not done yet: a human reviewer must approve this first (a $348.00 refund is at or over the $200.00 limit for automatic approval). It is saved as request REQ-06d033e966bb; a reviewer will decide by 2026-10-12T18:19:43+00:00 UTC. Tell the customer exactly that, give them the request number, and do NOT say it is done. Do not call start_return again for this order.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": true,
+     "approval_requests": [
+      "REQ-06d033e966bb:PENDING_APPROVAL"
+     ],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 3,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "approval: cancel $249 vacuum (over limit)",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "cancel_order",
+      "cancel_order"
+     ],
+     "executed": [],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-5555555-5555555"
+       },
+       "result": {
+        "needs_confirmation": true,
+        "message": "Before running cancel_order on order 112-5555555-5555555, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words."
+       }
+      },
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-5555555-5555555",
+        "confirmed": true
+       },
+       "result": {
+        "pending_approval": true,
+        "request_id": "REQ-26502074de77",
+        "status": "PENDING_APPROVAL",
+        "deadline": "2026-10-12T18:19:43+00:00",
+        "message": "Not done yet: a human reviewer must approve this first (a $249.00 refund is at or over the $200.00 limit for automatic approval). It is saved as request REQ-26502074de77; a reviewer will decide by 2026-10-12T18:19:43+00:00 UTC. Tell the customer exactly that, give them the request number, and do NOT say it is done. Do not call cancel_order again for this order."
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"Please cancel order 112-5555555-5555555\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-5555555-5555555\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"needs_confirmation\\\": true, \\\"message\\\": \\\"Before running cancel_order on order 112-5555555-5555555, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}, {\"role\": \"user\", \"content\": \"yes, cancel it\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_1_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-5555555-5555555\\\", \\\"confirmed\\\": true}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_1_0\", \"content\": \"{\\\"pending_approval\\\": true, \\\"request_id\\\": \\\"REQ-26502074de77\\\", \\\"status\\\": \\\"PENDING_APPROVAL\\\", \\\"deadline\\\": \\\"2026-10-12T18:19:43+00:00\\\", \\\"message\\\": \\\"Not done yet: a human reviewer must approve this first (a $249.00 refund is at or over the $200.00 limit for automatic approval). It is saved as request REQ-26502074de77; a reviewer will decide by 2026-10-12T18:19:43+00:00 UTC. Tell the customer exactly that, give them the request number, and do NOT say it is done. Do not call cancel_order again for this order.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": true,
+     "approval_requests": [
+      "REQ-26502074de77:PENDING_APPROVAL"
+     ],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 3,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "approval: cancel exactly $200.00 (at limit)",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "cancel_order",
+      "cancel_order"
+     ],
+     "executed": [],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-6666666-6666666"
+       },
+       "result": {
+        "needs_confirmation": true,
+        "message": "Before running cancel_order on order 112-6666666-6666666, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words."
+       }
+      },
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-6666666-6666666",
+        "confirmed": true
+       },
+       "result": {
+        "pending_approval": true,
+        "request_id": "REQ-e7c5b51dc83e",
+        "status": "PENDING_APPROVAL",
+        "deadline": "2026-10-12T18:19:43+00:00",
+        "message": "Not done yet: a human reviewer must approve this first (a $200.00 refund is at or over the $200.00 limit for automatic approval). It is saved as request REQ-e7c5b51dc83e; a reviewer will decide by 2026-10-12T18:19:43+00:00 UTC. Tell the customer exactly that, give them the request number, and do NOT say it is done. Do not call cancel_order again for this order."
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"Cancel order 112-6666666-6666666 please\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-6666666-6666666\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"needs_confirmation\\\": true, \\\"message\\\": \\\"Before running cancel_order on order 112-6666666-6666666, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}, {\"role\": \"user\", \"content\": \"yes\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_1_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-6666666-6666666\\\", \\\"confirmed\\\": true}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_1_0\", \"content\": \"{\\\"pending_approval\\\": true, \\\"request_id\\\": \\\"REQ-e7c5b51dc83e\\\", \\\"status\\\": \\\"PENDING_APPROVAL\\\", \\\"deadline\\\": \\\"2026-10-12T18:19:43+00:00\\\", \\\"message\\\": \\\"Not done yet: a human reviewer must approve this first (a $200.00 refund is at or over the $200.00 limit for automatic approval). It is saved as request REQ-e7c5b51dc83e; a reviewer will decide by 2026-10-12T18:19:43+00:00 UTC. Tell the customer exactly that, give them the request number, and do NOT say it is done. Do not call cancel_order again for this order.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": true,
+     "approval_requests": [
+      "REQ-e7c5b51dc83e:PENDING_APPROVAL"
+     ],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 3,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "approval: return exactly $200.00 (at limit)",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "start_return",
+      "start_return"
+     ],
+     "executed": [],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "start_return",
+       "args": {
+        "order_id": "112-8888888-8888888",
+        "reason": "stopped working"
+       },
+       "result": {
+        "needs_confirmation": true,
+        "message": "Before running start_return on order 112-8888888-8888888, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words."
+       }
+      },
+      {
+       "tool": "start_return",
+       "args": {
+        "order_id": "112-8888888-8888888",
+        "reason": "stopped working",
+        "confirmed": true
+       },
+       "result": {
+        "pending_approval": true,
+        "request_id": "REQ-c72f23374c7d",
+        "status": "PENDING_APPROVAL",
+        "deadline": "2026-10-12T18:19:43+00:00",
+        "message": "Not done yet: a human reviewer must approve this first (a $200.00 refund is at or over the $200.00 limit for automatic approval). It is saved as request REQ-c72f23374c7d; a reviewer will decide by 2026-10-12T18:19:43+00:00 UTC. Tell the customer exactly that, give them the request number, and do NOT say it is done. Do not call start_return again for this order."
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"I want to return order 112-8888888-8888888, it stopped working\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"start_return\", \"arguments\": \"{\\\"order_id\\\": \\\"112-8888888-8888888\\\", \\\"reason\\\": \\\"stopped working\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"needs_confirmation\\\": true, \\\"message\\\": \\\"Before running start_return on order 112-8888888-8888888, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}, {\"role\": \"user\", \"content\": \"yes please\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_1_0\", \"type\": \"function\", \"function\": {\"name\": \"start_return\", \"arguments\": \"{\\\"order_id\\\": \\\"112-8888888-8888888\\\", \\\"reason\\\": \\\"stopped working\\\", \\\"confirmed\\\": true}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_1_0\", \"content\": \"{\\\"pending_approval\\\": true, \\\"request_id\\\": \\\"REQ-c72f23374c7d\\\", \\\"status\\\": \\\"PENDING_APPROVAL\\\", \\\"deadline\\\": \\\"2026-10-12T18:19:43+00:00\\\", \\\"message\\\": \\\"Not done yet: a human reviewer must approve this first (a $200.00 refund is at or over the $200.00 limit for automatic approval). It is saved as request REQ-c72f23374c7d; a reviewer will decide by 2026-10-12T18:19:43+00:00 UTC. Tell the customer exactly that, give them the request number, and do NOT say it is done. Do not call start_return again for this order.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": true,
+     "approval_requests": [
+      "REQ-c72f23374c7d:PENDING_APPROVAL"
+     ],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 3,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "no approval: cancel $149.99 Kindle (under limit)",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "cancel_order",
+      "cancel_order"
+     ],
+     "executed": [
+      "cancel_order"
+     ],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-3333333-3333333"
+       },
+       "result": {
+        "needs_confirmation": true,
+        "message": "Before running cancel_order on order 112-3333333-3333333, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words."
+       }
+      },
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-3333333-3333333",
+        "confirmed": true
+       },
+       "result": {
+        "cancelled": true,
+        "order_id": "112-3333333-3333333",
+        "refund_amount": 149.99,
+        "refund_eta": "3-5 business days to the original payment method"
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"Cancel order 112-3333333-3333333\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-3333333-3333333\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"needs_confirmation\\\": true, \\\"message\\\": \\\"Before running cancel_order on order 112-3333333-3333333, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}, {\"role\": \"user\", \"content\": \"yes, cancel it\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_1_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-3333333-3333333\\\", \\\"confirmed\\\": true}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_1_0\", \"content\": \"{\\\"cancelled\\\": true, \\\"order_id\\\": \\\"112-3333333-3333333\\\", \\\"refund_amount\\\": 149.99, \\\"refund_eta\\\": \\\"3-5 business days to the original payment method\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "cancelled",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": false,
+     "approval_requests": [],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 2,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "no approval: cancel $199.99 (one cent under)",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "cancel_order",
+      "cancel_order"
+     ],
+     "executed": [
+      "cancel_order"
+     ],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-7777777-7777777"
+       },
+       "result": {
+        "needs_confirmation": true,
+        "message": "Before running cancel_order on order 112-7777777-7777777, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words."
+       }
+      },
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-7777777-7777777",
+        "confirmed": true
+       },
+       "result": {
+        "cancelled": true,
+        "order_id": "112-7777777-7777777",
+        "refund_amount": 199.99,
+        "refund_eta": "3-5 business days to the original payment method"
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"Cancel order 112-7777777-7777777\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-7777777-7777777\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"needs_confirmation\\\": true, \\\"message\\\": \\\"Before running cancel_order on order 112-7777777-7777777, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}, {\"role\": \"user\", \"content\": \"yes\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_1_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-7777777-7777777\\\", \\\"confirmed\\\": true}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_1_0\", \"content\": \"{\\\"cancelled\\\": true, \\\"order_id\\\": \\\"112-7777777-7777777\\\", \\\"refund_amount\\\": 199.99, \\\"refund_eta\\\": \\\"3-5 business days to the original payment method\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "cancelled",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": false,
+     "approval_requests": [],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 2,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "no approval: read-only lookup of a $348 order",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "get_order"
+     ],
+     "executed": [
+      "get_order"
+     ],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "get_order",
+       "args": {
+        "order_id": "112-1111111-1111111"
+       },
+       "result": {
+        "order_id": "112-1111111-1111111",
+        "item": "Sony WH-1000XM5 Headphones",
+        "price": 348.0,
+        "status": "delivered",
+        "ordered_on": "2026-10-03",
+        "delivered_on": "2026-10-08",
+        "eta": null
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"What's the status of 112-1111111-1111111?\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"get_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-1111111-1111111\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"order_id\\\": \\\"112-1111111-1111111\\\", \\\"item\\\": \\\"Sony WH-1000XM5 Headphones\\\", \\\"price\\\": 348.0, \\\"status\\\": \\\"delivered\\\", \\\"ordered_on\\\": \\\"2026-10-03\\\", \\\"delivered_on\\\": \\\"2026-10-08\\\", \\\"eta\\\": null}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": false,
+     "approval_requests": [],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 1,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "no approval: find orders by email",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "find_orders"
+     ],
+     "executed": [
+      "find_orders"
+     ],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "find_orders",
+       "args": {
+        "email": "raj@example.com"
+       },
+       "result": {
+        "orders": [
+         {
+          "order_id": "112-1111111-1111111",
+          "item": "Sony WH-1000XM5 Headphones",
+          "status": "delivered",
+          "ordered_on": "2026-10-03"
+         },
+         {
+          "order_id": "112-2222222-2222222",
+          "item": "Instant Pot Duo 6qt",
+          "status": "shipped",
+          "ordered_on": "2026-10-10"
+         }
+        ]
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"I don't know my order number, my email is raj@example.com\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"find_orders\", \"arguments\": \"{\\\"email\\\": \\\"raj@example.com\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"orders\\\": [{\\\"order_id\\\": \\\"112-1111111-1111111\\\", \\\"item\\\": \\\"Sony WH-1000XM5 Headphones\\\", \\\"status\\\": \\\"delivered\\\", \\\"ordered_on\\\": \\\"2026-10-03\\\"}, {\\\"order_id\\\": \\\"112-2222222-2222222\\\", \\\"item\\\": \\\"Instant Pot Duo 6qt\\\", \\\"status\\\": \\\"shipped\\\", \\\"ordered_on\\\": \\\"2026-10-10\\\"}]}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": false,
+     "approval_requests": [],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 1,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "no approval: support escalation opens an ESC ticket",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "escalate"
+     ],
+     "executed": [
+      "escalate"
+     ],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "escalate",
+       "args": {
+        "summary": "customer asked for a human"
+       },
+       "result": {
+        "escalated": true,
+        "ticket": "ESC-4417",
+        "message": "A human agent will email you within 24 hours.",
+        "summary": "customer asked for a human"
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"Get me a human please\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"escalate\", \"arguments\": \"{\\\"summary\\\": \\\"customer asked for a human\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"escalated\\\": true, \\\"ticket\\\": \\\"ESC-4417\\\", \\\"message\\\": \\\"A human agent will email you within 24 hours.\\\", \\\"summary\\\": \\\"customer asked for a human\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": false,
+     "approval_requests": [],
+     "escalation": "ESC-4417",
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 1,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "no approval: over-limit return asked, not yet confirmed",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "start_return"
+     ],
+     "executed": [],
+     "refused": [],
+     "observed": [
+      {
+       "tool": "start_return",
+       "args": {
+        "order_id": "112-1111111-1111111",
+        "reason": "stopped working"
+       },
+       "result": {
+        "needs_confirmation": true,
+        "message": "Before running start_return on order 112-1111111-1111111, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words."
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"Return the headphones on order 112-1111111-1111111, they stopped working\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"start_return\", \"arguments\": \"{\\\"order_id\\\": \\\"112-1111111-1111111\\\", \\\"reason\\\": \\\"stopped working\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"needs_confirmation\\\": true, \\\"message\\\": \\\"Before running start_return on order 112-1111111-1111111, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": false,
+     "approval_requests": [],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 1,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "case": "no approval: cancel a $260 order that already shipped",
+   "planner": "react",
+   "passed": 1,
+   "runs": 1,
+   "outcomes": [
+    {
+     "called": [
+      "cancel_order",
+      "cancel_order"
+     ],
+     "executed": [
+      "cancel_order"
+     ],
+     "refused": [
+      "cancel_order"
+     ],
+     "observed": [
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-9191919-9191919"
+       },
+       "result": {
+        "needs_confirmation": true,
+        "message": "Before running cancel_order on order 112-9191919-9191919, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words."
+       }
+      },
+      {
+       "tool": "cancel_order",
+       "args": {
+        "order_id": "112-9191919-9191919",
+        "confirmed": true
+       },
+       "result": {
+        "error": "Order 112-9191919-9191919 already shipped and cannot be cancelled. It can be returned instead."
+       }
+      }
+     ],
+     "reply": "(scripted reply)",
+     "error": null,
+     "transcript": "[{\"role\": \"user\", \"content\": \"Cancel order 112-9191919-9191919\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_0_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-9191919-9191919\\\"}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_0_0\", \"content\": \"{\\\"needs_confirmation\\\": true, \\\"message\\\": \\\"Before running cancel_order on order 112-9191919-9191919, tell the customer exactly what will happen and ask them to confirm. Call again with confirmed=true only after they say yes in their own words.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}, {\"role\": \"user\", \"content\": \"yes, cancel it\"}, {\"role\": \"assistant\", \"tool_calls\": [{\"id\": \"call_1_0\", \"type\": \"function\", \"function\": {\"name\": \"cancel_order\", \"arguments\": \"{\\\"order_id\\\": \\\"112-9191919-9191919\\\", \\\"confirmed\\\": true}\"}}]}, {\"role\": \"tool\", \"tool_call_id\": \"call_1_0\", \"content\": \"{\\\"error\\\": \\\"Order 112-9191919-9191919 already shipped and cannot be cancelled. It can be returned instead.\\\"}\"}, {\"role\": \"assistant\", \"content\": \"(scripted reply)\"}]",
+     "store": {
+      "112-1111111-1111111": "delivered",
+      "112-2222222-2222222": "shipped",
+      "112-3333333-3333333": "preparing",
+      "112-4444444-4444444": "delivered",
+      "112-5555555-5555555": "preparing",
+      "112-6666666-6666666": "preparing",
+      "112-7777777-7777777": "preparing",
+      "112-8888888-8888888": "delivered",
+      "112-9191919-9191919": "shipped"
+     },
+     "approval_requested": false,
+     "approval_requests": [],
+     "escalation": null,
+     "llm_calls": 0,
+     "cost": 0,
+     "ms": 2,
+     "fails": [],
+     "pass": true
+    }
+   ]
+  }
+ ],
+ "hitl": {
+  "tp": 4,
+  "fp": 0,
+  "fn": 0,
+  "tn": 7,
+  "hitl_recall": 1.0,
+  "escalation_precision": 1.0,
+  "rows": [
+   {
+    "case": "approval: return $348 headphones (over limit)",
+    "expected": true,
+    "observed": true,
+    "requests": [
+     "REQ-06d033e966bb:PENDING_APPROVAL"
+    ],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "approval: cancel $249 vacuum (over limit)",
+    "expected": true,
+    "observed": true,
+    "requests": [
+     "REQ-26502074de77:PENDING_APPROVAL"
+    ],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "approval: cancel exactly $200.00 (at limit)",
+    "expected": true,
+    "observed": true,
+    "requests": [
+     "REQ-e7c5b51dc83e:PENDING_APPROVAL"
+    ],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "approval: return exactly $200.00 (at limit)",
+    "expected": true,
+    "observed": true,
+    "requests": [
+     "REQ-c72f23374c7d:PENDING_APPROVAL"
+    ],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "no approval: cancel $149.99 Kindle (under limit)",
+    "expected": false,
+    "observed": false,
+    "requests": [],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "no approval: cancel $199.99 (one cent under)",
+    "expected": false,
+    "observed": false,
+    "requests": [],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "no approval: read-only lookup of a $348 order",
+    "expected": false,
+    "observed": false,
+    "requests": [],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "no approval: find orders by email",
+    "expected": false,
+    "observed": false,
+    "requests": [],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "no approval: support escalation opens an ESC ticket",
+    "expected": false,
+    "observed": false,
+    "requests": [],
+    "escalation": "ESC-4417",
+    "error": null
+   },
+   {
+    "case": "no approval: over-limit return asked, not yet confirmed",
+    "expected": false,
+    "observed": false,
+    "requests": [],
+    "escalation": null,
+    "error": null
+   },
+   {
+    "case": "no approval: cancel a $260 order that already shipped",
+    "expected": false,
+    "observed": false,
+    "requests": [],
+    "escalation": null,
+    "error": null
+   }
+  ],
+  "mode": "scripted, no model"
+ },
+ "skipped": []
+}
