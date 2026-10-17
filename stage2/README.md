@@ -7,6 +7,7 @@ top of its docstring.
 
     New:        ami/policy.py  ami/plan_execute.py
                 ami/approvals.py  ami/hitl_eval.py  review.py        (human-in-the-loop approval)
+                ami/router.py  ami/route_eval.py                     (model routing, below)
     Changed:    ami/planner.py  ami/tools.py  ami/agent_profile.py  ami/memory.py
                 ami/store.py (now SQLite: state/orders.db)
                 main.py  web.py  ui/chat.html  evals.py  golden.py  golden.json
@@ -33,8 +34,14 @@ number, and the turn ends. A reviewer decides later, from any process.
     RECEIVED -> DRAFTED -> COMPLETED                      (no sign-off needed)
     RECEIVED -> DRAFTED -> PENDING_APPROVAL
         -> APPROVED -> EXECUTING -> COMPLETED | FAILED     reviewer said yes
-        -> REJECTED -> COMPLETED                           reviewer said no; nothing runs
+        -> REJECTED -> COMPLETED                           reviewer said no, or asked for
+                                                           changes; nothing runs
         -> EXPIRED                                         nobody decided in time; nothing runs
+
+"Request changes" is a no with a note (decision `changes_requested`): the
+proposal closes unexecuted, the agent tells the customer what the reviewer
+wants at their next message, and a revised action is a new proposal with a
+new review. A draft is never edited and then run on the old approval.
 
 | | |
 |---|---|
@@ -78,6 +85,7 @@ has been returned. Terminal 2, as the reviewer:
     curl -H "$H" localhost:8000/approvals/REQ-...                          # + audit trail
     curl -H "$H" -X POST -d '{"reviewer":"dana","reason":"ok"}' localhost:8000/approvals/REQ-.../approve
     curl -H "$H" -X POST -d '{"reviewer":"dana","reason":"used"}' localhost:8000/approvals/REQ-.../reject
+    curl -H "$H" -X POST -d '{"reviewer":"dana","reason":"offer an exchange"}' localhost:8000/approvals/REQ-.../request-changes
 
 Approve runs the return at once and answers with the RMA. The customer's
 next message sees it in working memory. Stop and restart `web.py` while a
@@ -88,6 +96,7 @@ server:
     python3 review.py show REQ-...
     python3 review.py approve REQ-... --reviewer dana [--defer]
     python3 review.py reject  REQ-... --reviewer dana --reason "used item"
+    python3 review.py revise  REQ-... --reviewer dana --reason "offer an exchange"
     python3 review.py sweep
 
 To see the timeout, start the server with `AMI_APPROVAL_TIMEOUT_MIN=0.5
@@ -227,3 +236,185 @@ has no recorded store and comes out `unresolved`.
   execution.
 - Reviewers are named, not authenticated individually: one shared token
   guards the HTTP API.
+
+## Model routing
+
+Each customer turn is drafted by one of two models: a **cheap** one for
+lookups, tracking, FAQs and policy questions the knowledge base answers,
+and a **strong** one for anything that moves money or changes an account
+(including the customer's "yes" to one), policy exceptions and authority
+claims, fraud, security, legal and payment disputes, ambiguous or
+multi-step requests, upset customers, and input the policy layer flagged.
+
+| | |
+|---|---|
+| `ami/router.py` | classifies the turn in plain code (no model call to decide), keeps the turn's route, escalates cheap -> strong on observed signals, retries and falls back on provider failures |
+| `ami/llm.py` | `complete()` calls the current route's model; records tokens, cost and where the cost came from (`provider`, `configured`, or `unknown`) |
+| `ami/planner.py`, `ami/plan_execute.py` | report signals to the route; redraft an inadequate cheap answer once; answer truthfully when no model is reachable |
+| `ami/approvals.py` | saves the routing record with every request (column `routing`); `request_changes()` |
+| `ami/route_eval.py`, `evals.py --compare` | cheap-only vs strong-only vs routed on the same cases: the cost-vs-quality report |
+
+**Policy rules that do not depend on the model.** Added after the live
+eval showed the model skipping them; they hold under every strategy:
+- *Required hand-offs* (`policy.required_handoff`): a policy exception
+  (past the window, "make an exception", override), a second refund, an
+  account-security complaint (hacked, "I didn't place this order") or a
+  payment dispute. `check_input` tells the model to look the rule up and
+  escalate; if it does not, `enforce_handoff` opens the ticket itself at
+  the end of the turn (through `guarded_run`, so escalate-once holds) and
+  says so in the reply. This also runs when no model is reachable.
+- *Schema validation* (`tools.validate`): every tool call is checked
+  against the schema the model was shown, before the confirmation gate
+  and before anything can be proposed. An unknown tool, or unknown,
+  missing, empty or mistyped arguments, are refused as a bad call
+  (`retry`). The approval workflow's own arguments (`op_id`, `expect`)
+  are refused by name (`unauthorized_argument` in the trace).
+  `approvals.submit` validates again, so nothing malformed is ever stored
+  for a reviewer.
+- *Grounding across turns*: an order number the customer typed earlier in
+  the same conversation may be echoed back (`work.mentioned`). Only order
+  numbers carry over between turns. An RMA or ticket number the customer
+  typed is a claim, not a fact, and nothing from another conversation is
+  trusted.
+- *The 30-day rule*: each retrieved passage carries its document's
+  headline rule (`document_rule`, from `knowledge.lead`), so a returns
+  answer always has the window, whichever section ranked first.
+
+**How a turn is routed.** `router.classify()` scores features of the
+customer's words and of working memory (`router.WEIGHTS`): `risk`
+(cancel/return/refund as a request, not as a question about the rule),
+`pending` (a preview awaits the customer's answer), `exception`,
+`sensitive`, `policy_flag`, `upset`, `multi_order` (2 each), and
+`multi_intent`, `ambiguous`, `vague`, `unknown_intent`, `long`,
+`prior_refusal`, `reviewer_news` (1 each), and `inherited` (2): a short
+reply ("yes", "go ahead", "no") to a turn that was strong is strong too,
+whatever its own words. The last turn's routing is kept in working memory
+(`route_context`, saved with the session), so a bare "yes" is routed by
+what it answers, not by its literal wording. A score at or over the threshold
+(2) goes to the strong model. The decision, its score and every feature
+behind it are logged (`kind: route` in `state/trace.jsonl`), shown in the
+web trace panel, printed by `main.py`, and saved with the request
+(`review.py show` prints "drafted by"). A request that cannot be
+classified goes to `AMI_ROUTE_UNDETERMINED` (strong).
+
+**Escalation, bounded.** A routed cheap turn moves to the strong model for
+the rest of the turn when the loop observes: tool arguments that are not
+JSON, a call the tool rejected as malformed (`retry`), a request for a
+state-changing tool, an answer that is empty, too short, or quotes an order
+number, RMA or ticket no tool returned (the output policy's own check), a
+used-up step budget, or, as one signal among those, an answer that says it
+is unsure. An inadequate cheap answer is dropped and redrafted by the strong
+model. Escalation is one-way and at most `AMI_ROUTE_MAX_ESCALATIONS` (1) per
+turn: a second bad answer is returned as it is, and the output policy still
+redacts it. Cheap-only and strong-only never escalate; they are the
+baselines.
+
+**Routing never decides what is allowed.** Every tool call still goes
+through `policy.guarded_run`: the same confirmation gate (a later turn's
+yes), the same approval limit priced from the order store, the same
+reviewer. There is no tool a model can call to approve anything, and the
+internal `op_id`/`expect` arguments are refused from the model. The tests
+run an over-limit refund under all three strategies: it waits for a person
+in every one.
+
+**Failures.** Each model call has `AMI_LLM_TIMEOUT` seconds. A transient
+failure (timeout, connection, 5xx) is retried `AMI_LLM_RETRIES` times, then
+the fallback model is tried (default: the other tier), and the fallback is
+logged and recorded. When every model fails the customer is told only what
+is true: what this turn already did (an action, or a request now waiting
+for a reviewer), otherwise that nothing changed, and to try again. A
+pending approval is untouched by any of this: it is in `approvals.db`, the
+worker never waits on it, and the absence policy above (deadline ->
+`EXPIRED`, nothing runs) applies whatever model drafted it.
+
+| Setting | Default | |
+|---|---|---|
+| `AMI_ROUTING` | `route` | `route`, or `cheap` / `strong` to use one model for every turn |
+| `AMI_MODEL_CHEAP` | `$MODEL`, else `gpt-4o-mini` | the cheap tier |
+| `AMI_MODEL_STRONG` | `gpt-5.6-terra` | the strong tier |
+| `AMI_MODEL_FALLBACK` | the other tier | comma list tried after a model fails; `none` for no fallback |
+| `AMI_ROUTE_THRESHOLD` | `2` | score at or over which a turn is strong |
+| `AMI_ROUTE_WEIGHTS` | | JSON overriding feature weights, e.g. `{"upset": 1}` |
+| `AMI_ROUTE_UNDETERMINED` | `strong` | tier when a request cannot be classified |
+| `AMI_ROUTE_MAX_ESCALATIONS` | `1` | cheap -> strong escalations per turn (`0`: never) |
+| `AMI_ROUTE_MIN_REPLY_CHARS` | `15` | a shorter cheap answer is redrafted |
+| `AMI_LLM_TIMEOUT` | `60` | seconds per model call |
+| `AMI_LLM_RETRIES` | `1` | retries per model on a transient error |
+| `AMI_PRICES` | | JSON price rows, $/million tokens `[input, cached, output]`, added to `ami/pricing.py` |
+
+`OPENAI_API_KEY` and `OPENAI_BASE_URL` (in `../.env`) are the provider
+credentials for both tiers. The key is never logged: error text is
+redacted before it reaches the trace. `../.env.example` lists every setting.
+
+**Measuring cost against quality.**
+
+    python3 evals.py --compare --scripted     # deterministic, free: routing, escalation, HITL safety
+    python3 evals.py --compare                # against the provider; --max-cost 4 caps the spend
+    python3 evals.py --strategy cheap         # one strategy over the normal table
+
+`--compare` runs every case three ways, interleaved case by case so a
+budget stop leaves all three strategies with the same cases, and writes
+`results/routing_report.md` and `results/routing_compare.json` (a scripted
+run writes `routing_report_scripted.md` and `routing_compare_scripted.json`,
+so it never overwrites a live report). The cases
+are `CASES + HITL_CASES + ROUTING_CASES` (51; scripted runs use the 31 with
+scripts). Each has hand-written labels: `category`, `route` (the tier each
+turn should start on), `human` (should it be handed to a human agent, per
+`knowledge/policies/escalation.md`), and for the approval cases
+`needs_approval`. Four routing cases play the reviewer afterwards (approve,
+reject, request changes, never answer) and check the order and what the
+agent is told next.
+
+Per request the report gives the request ids, category, the tiers used and
+why, escalation, tokens, cost, latency, the quality score and its parts
+(correct, complete, policy, grounded), whether approval was needed and
+requested, and the reviewer's decision. Per strategy: total, average and
+per-resolved-request cost, average latency, quality, task success, strong
+escalation rate, HITL recall (must be 100% in every strategy, or the run
+exits 1), escalation precision, and the human hand-off precision.
+
+What the numbers are, and are not:
+- Quality is the share of each case's own checks that passed. It is not an
+  LLM judge (`golden.py` is), and it describes this set of cases only.
+- Cost is the provider's figure when the response has one, else the
+  configured list price (`ami/pricing.py`, marked unverified there) times
+  the measured tokens, else `n/a`. An unknown cost is never counted as zero.
+- A scripted run reports no usage, so its cost is `n/a` throughout.
+- Four kinds of cost are reported apart, never mixed: **billed** (what the
+  provider reported in its usage; the class proxy reports none),
+  **estimated** (configured list price of the model that served the call ×
+  its tokens), **projected** (the same tokens at the requested model's list
+  price) and **unknown** (counted, never averaged in as zero). A failed
+  request is never a success, whatever it cost.
+- Every call's served model is checked against the requested one
+  (`substituted` in the trace). The report states a **comparison type**
+  in its first lines: `simulated`, `model-substitution` (some call
+  was served by a different model than requested, or cheap-only and
+  strong-only were served by the same model), or `distinct-models`. Only a
+  `distinct-models` run prints a measured saving. Any other type prints
+  "not measured".
+- **The class proxy serves `gpt-5.6-terra` whatever model is asked for**
+  (checked: `gpt-4o-mini`, `gpt-5.6-luna`, `gpt-5.6-sol` and `gpt-5.6-terra`
+  all came back as `gpt-5.6-terra-2026-07-09`, with no cost in the usage).
+  Through it, the three strategies run the same model, so a live
+  comparison measures routing behaviour, tokens, latency and HITL safety,
+  but not a real cheap-vs-strong difference in quality or price. The
+  report detects this and says so. Its *projected cost* column prices the
+  measured tokens at each requested model's listed price; that is a
+  projection, not a bill. **Live model-specific savings have not been
+  validated:** that needs provider responses that show the requested
+  (different) model ids, and a `distinct-models` comparison on them.
+  For a real comparison, point `OPENAI_BASE_URL`
+  at a provider that honours model names and set `AMI_MODEL_CHEAP` /
+  `AMI_MODEL_STRONG` (and `AMI_PRICES` if they are not listed).
+
+**Reports in `results/`.**
+- `routing_report_scripted.md` comes from `evals.py --compare --scripted`.
+  It is deterministic and has no cost.
+- `routing_report.md` is the full live run of the 49 cases the set had then. It predates the
+  fixes above and is re-rendered in the current format (see its note).
+- `routing_regressions_live.md` re-runs the cases those fixes target, live:
+
+      python3 evals.py --compare --only "faq: the return policy|policy exception: past the window|high risk: account hacked|guard: return an undelivered order|confirmation inherits|policy backstop|rag: a regulation|rag: a rule about the agent|reviewer approves" --out results/routing_regressions_live.json --report results/routing_regressions_live.md
+
+  All three live reports are `model-substitution` comparisons.

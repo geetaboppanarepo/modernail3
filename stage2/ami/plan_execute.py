@@ -14,11 +14,17 @@ the planner cannot know an order number it has not looked up yet, so a
 step that depends on an earlier result has to be left blank ("?") and the
 whole thing re-planned once the blank can be filled. That re-plan is the
 honest cost of planning ahead, and the trace shows it.
+
+Model routing (router.py), as in the ReAct loop: a plan that is not valid
+JSON, a state-changing step, or an inadequate answer may move the rest of
+the turn to the strong model, once; no model at all ends the turn with
+router.unavailable_reply().
 """
 
 import json
 
 from ami import policy
+from ami import router
 from ami import tools
 from ami.llm import complete
 from ami.planner import notes
@@ -88,6 +94,8 @@ def _plan(convo, work, longterm, extra, observations):
     try:
         return json.loads(msg.tool_calls[0].function.arguments), None
     except json.JSONDecodeError:
+        if router.escalate("malformed plan: not valid JSON"):
+            return _plan(convo, work, longterm, extra, observations)
         return {"goal": "?", "steps": []}, None
 
 
@@ -101,7 +109,16 @@ def plan_execute(convo, work, trace=True, steps=None, longterm=None, extra=None)
     n = 0
 
     for round_no in range(1, MAX_PLANS + 1):
-        plan, direct = _plan(convo, work, longterm, extra, observations)
+        try:
+            plan, direct = _plan(convo, work, longterm, extra, observations)
+        except router.ModelUnavailable:
+            return router.unavailable_reply(work)
+        why = direct is not None and router.review_answer(direct, work, convo, longterm)
+        if why and router.escalate(why):        # the strong model plans it instead
+            try:
+                plan, direct = _plan(convo, work, longterm, extra, observations)
+            except router.ModelUnavailable:
+                return router.unavailable_reply(work)
         if direct is not None:                  # no plan needed; model just answered
             convo.add_assistant({"role": "assistant", "content": direct})
             return direct
@@ -122,6 +139,7 @@ def plan_execute(convo, work, trace=True, steps=None, longterm=None, extra=None)
             n += 1
             result = policy.guarded_run(name, args, work)
             work.record(name, args, result)
+            router.tool_result(name, result)
             observations.append({"tool": name, "args": args, "result": result})
             if steps is not None:
                 steps.append({"n": n, "thought": st["why"], "tool": name,
@@ -142,8 +160,13 @@ def plan_execute(convo, work, trace=True, steps=None, longterm=None, extra=None)
     note = (notes(work, longterm, extra) or "") + \
            "\n\nWHAT YOU DID THIS TURN:\n" + summary + \
            "\n\nNow write the reply to the customer."
-    resp = complete(convo.messages(extra_system=note))
-    reply = resp.choices[0].message.content
+    try:
+        reply = complete(convo.messages(extra_system=note)).choices[0].message.content
+        why = router.review_answer(reply, work, convo, longterm)
+        if why and router.escalate(why):        # one redraft, by the strong model
+            reply = complete(convo.messages(extra_system=note)).choices[0].message.content
+    except router.ModelUnavailable:
+        return router.unavailable_reply(work)
     # Keep the transcript honest: record the reply, not the plan machinery.
     convo.add_assistant({"role": "assistant", "content": reply})
     return reply

@@ -20,6 +20,11 @@ running, and a reviewer decides through the /approvals endpoints below —
 which need the X-Reviewer-Token header to match $AMI_REVIEWER_TOKEN, and
 are switched off when it is unset. A background sweeper expires overdue
 requests and runs approved ones every $AMI_SWEEP_SECONDS (default 30).
+
+Model routing: each /chat turn is classified by ami/router.py, which picks
+the cheap or the strong model (AMI_MODEL_CHEAP / AMI_MODEL_STRONG). The
+decision, any escalation, and the turn's tokens and cost are logged, saved
+with the request in approvals.db, and returned to the page as `route`.
 """
 
 import hmac
@@ -40,7 +45,7 @@ from ami import observe
 from ami import plan_execute
 from ami import planner
 from ami import policy
-from ami.llm import MODEL
+from ami import router
 from ami.memory import ConversationMemory, LongTermMemory, WorkingMemory
 from ami import ROOT          # the stage folder
 
@@ -136,6 +141,12 @@ def state(session, sid):
         "longterm": LONGTERM.recall(work.customer_email, getattr(work, "session_id", None)),
         "approvals": approvals.for_customer(sid),
     }
+
+
+def route_view(routing):
+    """The routing decision, for the trace panel: no prices, no internals."""
+    return {k: routing.get(k) for k in ("initial_tier", "final_tier", "models_used",
+                                        "reason", "escalated", "escalations", "calls")}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -265,7 +276,7 @@ class Handler(BaseHTTPRequestHandler):
         turn_id = observe.new_turn()
 
         # policy: input — before the text touches memory
-        text, note = policy.check_input(text)
+        text, note = policy.check_input(text, work)
         work.turn += 1
         work.session_id = sid            # so long-term recall excludes THIS chat
         # HITL: anything a reviewer decided since last turn, then this
@@ -274,6 +285,7 @@ class Handler(BaseHTTPRequestHandler):
         earlier = [m["content"] for m in convo.history if m.get("role") == "user"][-6:]
         request_id = approvals.begin(text, session_id=sid, context=earlier)
         convo.add_user(text)
+        router.begin(text, work, note)       # which model drafts this turn, and why
 
         steps = []
         with observe.timer() as t:
@@ -282,7 +294,10 @@ class Handler(BaseHTTPRequestHandler):
                             longterm=LONGTERM, extra=note)
             except Exception as e:                  # keep the page alive
                 reply = f"Something went wrong: {type(e).__name__}: {e}"
-            request = approvals.finish(request_id, reply)
+            finally:
+                routing = router.end()
+            reply = policy.enforce_handoff(reply, work)   # a human, where policy says so
+            request = approvals.finish(request_id, reply, routing)
 
         # policy: output — before the customer sees it
         reply = policy.check_output(
@@ -295,13 +310,16 @@ class Handler(BaseHTTPRequestHandler):
         observe.log("turn", user=text, steps=len(steps), ms=t.ms,
                     actions=len(work.actions) - before,
                     planner=data.get("planner", "react"),
-                    cost=observe.turn_cost(turn_id))
+                    cost=observe.turn_cost(turn_id),
+                    tier=routing["final_tier"], escalated=routing["escalated"],
+                    request=request_id)
         save_sessions()                  # survive a restart
 
         self._send(json.dumps({"reply": reply, "steps": steps,
                                "new_actions": work.actions[before:],
                                "request_id": request_id,
                                "request_status": request["status"],
+                               "route": route_view(routing),
                                **state(session, sid)}))
 
     def log_message(self, *args):
@@ -310,7 +328,7 @@ class Handler(BaseHTTPRequestHandler):
 
 PAGE = (ROOT / "ui" / "chat.html").read_text()
 
-PAGE = (PAGE.replace("__MODEL__", MODEL)
+PAGE = (PAGE.replace("__MODEL__", router.label())
             .replace("__GREETING__", json.dumps(profile.GREETING)))
 
 

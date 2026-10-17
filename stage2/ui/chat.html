@@ -213,12 +213,26 @@ function draw(d) {
 
   const box = $('steps');
   box.className = '';
+  box.innerHTML = '';
+  if (d.route) {                 // which model drafted this turn, and why
+    const r = d.route, el = document.createElement('div');
+    el.className = 'step';
+    el.innerHTML = '<div class="lbl">Model</div><pre class="rt"></pre>';
+    el.querySelector('.rt').textContent =
+      (r.models_used || []).join(', ') + ' · ' + r.final_tier + ' tier' +
+      (r.escalated ? ' (escalated from ' + r.initial_tier + ': ' +
+        r.escalations.map(x => x.why).join('; ') + ')' : '') + '\n' + r.reason;
+    box.append(el);
+  }
   if (!d.steps || !d.steps.length) {
-    box.className = 'empty';
-    box.textContent = 'No tools called this turn — answered from memory.';
+    const msg = 'No tools called this turn — answered from memory.';
+    if (!d.route) { box.className = 'empty'; box.textContent = msg; return; }
+    const el = document.createElement('div');
+    el.className = 'empty';
+    el.textContent = msg;
+    box.append(el);
     return;
   }
-  box.innerHTML = '';
   for (const s of d.steps) {
     const err = 'error' in s.observation;
     const el = document.createElement('div');

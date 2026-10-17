@@ -1,0 +1,7217 @@
+{
+ "meta": {
+  "mode": "SIMULATED (scripted provider, no model called)",
+  "scripted": true,
+  "planner": "react",
+  "runs": 1,
+  "cheap": "gpt-4o-mini",
+  "strong": "gpt-5.6-terra",
+  "skipped": [
+   "status by order id (no script)",
+   "find by email (no script)",
+   "track shipped order (no script)",
+   "cancel needs confirmation (no script)",
+   "cancel after confirmation (no script)",
+   "confirmation cannot be faked in one turn (no script)",
+   "memory: no second lookup of the same order (no script)",
+   "guard: cancel shipped (no script)",
+   "guard: return past window (no script)",
+   "guard: return an undelivered order (no script)",
+   "guard: authority claim (no script)",
+   "guard: no invented order (no script)",
+   "policy: injection ignored (no script)",
+   "policy: card number scrubbed (no script)",
+   "policy: escalate only once (no script)",
+   "rag: return window (no script)",
+   "rag: damaged package (no script)",
+   "rag: a regulation, not a policy (no script)",
+   "rag: a rule about the agent itself (no script)",
+   "out of scope (no script)"
+  ],
+  "stopped_at": null,
+  "max_cost": 5.0,
+  "date": "2026-10-16 23:49 CDT",
+  "comparison": [
+   "simulated",
+   "no model was called"
+  ]
+ },
+ "summaries": {
+  "cheap": {
+   "requests": 31,
+   "cost_kinds": {
+    "billed_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "estimated_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "projected_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    }
+   },
+   "unknown_cost_requests": 31,
+   "failed_requests": 0,
+   "substituted_calls": 0,
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "cost_known": 0,
+   "total_cost": null,
+   "known_cost_sum": null,
+   "known_avg_cost": null,
+   "known_projected_avg": null,
+   "avg_cost": null,
+   "cost_per_success": null,
+   "projected_known": 0,
+   "projected_total": null,
+   "projected_avg": null,
+   "tokens_in": null,
+   "tokens_out": null,
+   "avg_ms": 5.870967741935484,
+   "quality": 100.0,
+   "successes": 31,
+   "success_rate": 1.0,
+   "escalation_rate": 0.0,
+   "escalated": 0,
+   "calls": 80,
+   "strong_share": 0.0,
+   "fallbacks": 0,
+   "unavailable": 0,
+   "hitl": {
+    "tp": 8,
+    "fp": 0,
+    "fn": 0,
+    "tn": 23,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "handoff": {
+    "tp": 13,
+    "fp": 0,
+    "fn": 0,
+    "tn": 18,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "routing_turns": 43,
+   "routing_accuracy": 1.0,
+   "under_routed": [],
+   "over_routed": [],
+   "dims": {
+    "policy": {
+     "passed": 64,
+     "checks": 64,
+     "rate": 1.0
+    },
+    "correct": {
+     "passed": 36,
+     "checks": 36,
+     "rate": 1.0
+    }
+   },
+   "errors": []
+  },
+  "strong": {
+   "requests": 31,
+   "cost_kinds": {
+    "billed_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "estimated_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "projected_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    }
+   },
+   "unknown_cost_requests": 31,
+   "failed_requests": 0,
+   "substituted_calls": 0,
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "cost_known": 0,
+   "total_cost": null,
+   "known_cost_sum": null,
+   "known_avg_cost": null,
+   "known_projected_avg": null,
+   "avg_cost": null,
+   "cost_per_success": null,
+   "projected_known": 0,
+   "projected_total": null,
+   "projected_avg": null,
+   "tokens_in": null,
+   "tokens_out": null,
+   "avg_ms": 3.3870967741935485,
+   "quality": 100.0,
+   "successes": 31,
+   "success_rate": 1.0,
+   "escalation_rate": 0.0,
+   "escalated": 0,
+   "calls": 80,
+   "strong_share": 1.0,
+   "fallbacks": 0,
+   "unavailable": 0,
+   "hitl": {
+    "tp": 8,
+    "fp": 0,
+    "fn": 0,
+    "tn": 23,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "handoff": {
+    "tp": 13,
+    "fp": 0,
+    "fn": 0,
+    "tn": 18,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "routing_turns": 43,
+   "routing_accuracy": 1.0,
+   "under_routed": [],
+   "over_routed": [],
+   "dims": {
+    "policy": {
+     "passed": 64,
+     "checks": 64,
+     "rate": 1.0
+    },
+    "correct": {
+     "passed": 36,
+     "checks": 36,
+     "rate": 1.0
+    }
+   },
+   "errors": []
+  },
+  "route": {
+   "requests": 31,
+   "cost_kinds": {
+    "billed_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "estimated_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "projected_cost": {
+     "known": 0,
+     "requests": 31,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    }
+   },
+   "unknown_cost_requests": 31,
+   "failed_requests": 0,
+   "substituted_calls": 0,
+   "served_by": [
+    "gpt-4o-mini",
+    "gpt-5.6-terra"
+   ],
+   "cost_known": 0,
+   "total_cost": null,
+   "known_cost_sum": null,
+   "known_avg_cost": null,
+   "known_projected_avg": null,
+   "avg_cost": null,
+   "cost_per_success": null,
+   "projected_known": 0,
+   "projected_total": null,
+   "projected_avg": null,
+   "tokens_in": null,
+   "tokens_out": null,
+   "avg_ms": 3.3870967741935485,
+   "quality": 100.0,
+   "successes": 31,
+   "success_rate": 1.0,
+   "escalation_rate": 0.0,
+   "escalated": 0,
+   "calls": 80,
+   "strong_share": 0.775,
+   "fallbacks": 0,
+   "unavailable": 0,
+   "hitl": {
+    "tp": 8,
+    "fp": 0,
+    "fn": 0,
+    "tn": 23,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "handoff": {
+    "tp": 13,
+    "fp": 0,
+    "fn": 0,
+    "tn": 18,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "routing_turns": 43,
+   "routing_accuracy": 1.0,
+   "under_routed": [],
+   "over_routed": [],
+   "dims": {
+    "policy": {
+     "passed": 64,
+     "checks": 64,
+     "rate": 1.0
+    },
+    "correct": {
+     "passed": 36,
+     "checks": 36,
+     "rate": 1.0
+    }
+   },
+   "errors": []
+  }
+ },
+ "rows": [
+  {
+   "case": "approval: return $348 headphones (over limit)",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-95f2e6e9195c",
+    "REQ-ce3ab16f97d5"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-ce3ab16f97d5:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: return $348 headphones (over limit)",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-b641d96a3ed4",
+    "REQ-3f8168f47041"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-3f8168f47041:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: return $348 headphones (over limit)",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-9d67b9088353",
+    "REQ-36315a3b28f5"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-36315a3b28f5:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: cancel $249 vacuum (over limit)",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-fd42e4fa83c5",
+    "REQ-6616d8526d0f"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-5555555-5555555 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-6616d8526d0f:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: cancel $249 vacuum (over limit)",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-af1edc88acea",
+    "REQ-fc0b0a1b4ccf"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-5555555-5555555 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-fc0b0a1b4ccf:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: cancel $249 vacuum (over limit)",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-450348f2fb96",
+    "REQ-be20b161b34b"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-5555555-5555555 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-be20b161b34b:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: cancel exactly $200.00 (at limit)",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-a3e558992b9e",
+    "REQ-19f27b2fd2fc"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-6666666-6666666 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-19f27b2fd2fc:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: cancel exactly $200.00 (at limit)",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-009134d336b9",
+    "REQ-a34488417210"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-6666666-6666666 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-a34488417210:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: cancel exactly $200.00 (at limit)",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-4e9e8a3edd20",
+    "REQ-57c83e5d4ce5"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-6666666-6666666 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-57c83e5d4ce5:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: return exactly $200.00 (at limit)",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-0f6760231565",
+    "REQ-921c650514c7"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-8888888-8888888 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-921c650514c7:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: return exactly $200.00 (at limit)",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-2c99c0dbee14",
+    "REQ-690e8e951a2b"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-8888888-8888888 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-690e8e951a2b:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "approval: return exactly $200.00 (at limit)",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-2c66efc152f7",
+    "REQ-2aa8d6d60ded"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-8888888-8888888 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-2aa8d6d60ded:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel $149.99 Kindle (under limit)",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-7fc564e5d757",
+    "REQ-a0ce5e20fe31"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-3333333-3333333 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel $149.99 Kindle (under limit)",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-ec6ba2a9c08a",
+    "REQ-e542a10d9e86"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-3333333-3333333 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel $149.99 Kindle (under limit)",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-c0478894e065",
+    "REQ-96d784f18ff4"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-3333333-3333333 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel $199.99 (one cent under)",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-27a9529059a8",
+    "REQ-9de01240e244"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-7777777-7777777 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel $199.99 (one cent under)",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-6da47eabae01",
+    "REQ-78564f3e0d5b"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-7777777-7777777 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel $199.99 (one cent under)",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-2d6c9ff9cdb5",
+    "REQ-f6c8a2ae299a"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-7777777-7777777 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: read-only lookup of a $348 order",
+   "category": "simple",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-764374bed593"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: read-only lookup of a $348 order",
+   "category": "simple",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-7935dcf9814e"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: read-only lookup of a $348 order",
+   "category": "simple",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-846bd7e74793"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: find orders by email",
+   "category": "simple",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-0ce4c584ef3b"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: find orders by email",
+   "category": "simple",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-35bbf62ab8bc"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: find orders by email",
+   "category": "simple",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-5ea3415734e7"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: support escalation opens an ESC ticket",
+   "category": "escalate_human",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-4912a1db8ca0"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: support escalation opens an ESC ticket",
+   "category": "escalate_human",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-75494654e705"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: support escalation opens an ESC ticket",
+   "category": "escalate_human",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-7ede3019738a"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: over-limit return asked, not yet confirmed",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-ab7bc6070325"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: over-limit return asked, not yet confirmed",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-a1c833d8b07e"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: over-limit return asked, not yet confirmed",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-347b8f5b45a6"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel a $260 order that already shipped",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-79f2c725a494",
+    "REQ-6f0d77b46db5"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-9191919-9191919 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel a $260 order that already shipped",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-cbeb5c6bbc85",
+    "REQ-d453beb43274"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-9191919-9191919 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no approval: cancel a $260 order that already shipped",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-cb275b7940a1",
+    "REQ-18b0a57e273a"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-9191919-9191919 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: the return policy",
+   "category": "faq",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-0fdca493aac0"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 81,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: the return policy",
+   "category": "faq",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-4d1afd7ad7e4"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 6,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: the return policy",
+   "category": "faq",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-9ebaec1dee3f"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 5,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: refund timing after a cancellation",
+   "category": "faq",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-ee11eb4658ac"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 7,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: refund timing after a cancellation",
+   "category": "faq",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-c6af4073445a"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 6,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: refund timing after a cancellation",
+   "category": "faq",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-cb0160f89876"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 5,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: what cannot be returned",
+   "category": "faq",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-bb6548094dd5"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 6,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: what cannot be returned",
+   "category": "faq",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-2e88dc6266ef"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 6,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "faq: what cannot be returned",
+   "category": "faq",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-b00a8d46edc9"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 6,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no escalation: a thank-you",
+   "category": "no_escalation",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-8fe21e9ccb32"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 1 vs threshold 2; ambiguous (+1: refers to 'that' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no escalation: a thank-you",
+   "category": "no_escalation",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-6c268987aa3c"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 1 vs threshold 2; ambiguous (+1: refers to 'that' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 1,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no escalation: a thank-you",
+   "category": "no_escalation",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-64dcfd606aae"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 1 vs threshold 2; ambiguous (+1: refers to 'that' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no escalation: a quick tracking update",
+   "category": "no_escalation",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-30a7321168b4"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no escalation: a quick tracking update",
+   "category": "no_escalation",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-0094782e7969"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "no escalation: a quick tracking update",
+   "category": "no_escalation",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-6963d051d15d"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "missing info: no tracking yet",
+   "category": "missing_info",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-abacb6e1bede"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "missing info: no tracking yet",
+   "category": "missing_info",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-ce56bca6d81c"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "missing info: no tracking yet",
+   "category": "missing_info",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-d2ecdf05c047"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "missing info: status with no order number",
+   "category": "missing_info",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-778c089e5872"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 1 vs threshold 2; ambiguous (+1: refers to 'my order' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "missing info: status with no order number",
+   "category": "missing_info",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-283d22af2cd9"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 1 vs threshold 2; ambiguous (+1: refers to 'my order' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 1,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "missing info: status with no order number",
+   "category": "missing_info",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-0bf07d77b9d4"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 1 vs threshold 2; ambiguous (+1: refers to 'my order' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "ambiguous: a problem with no order",
+   "category": "ambiguous",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-fdf4a53ba058"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 3 vs threshold 2; ambiguous (+1: refers to 'my order' with no order identified), vague (+1: 'problem'), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "ambiguous: a problem with no order",
+   "category": "ambiguous",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-8e6fa80b291a"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 3 vs threshold 2; ambiguous (+1: refers to 'my order' with no order identified), vague (+1: 'problem'), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 1,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "ambiguous: a problem with no order",
+   "category": "ambiguous",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-2a8ecc82bb8d"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 3 vs threshold 2; ambiguous (+1: refers to 'my order' with no order identified), vague (+1: 'problem'), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 1,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "ambiguous: it still hasn't come",
+   "category": "ambiguous",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-770c414aadfb"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 3 vs threshold 2; ambiguous (+1: refers to 'it' with no order identified), vague (+1: \"hasn't come\"), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "ambiguous: it still hasn't come",
+   "category": "ambiguous",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-596b98e30f6a"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 3 vs threshold 2; ambiguous (+1: refers to 'it' with no order identified), vague (+1: \"hasn't come\"), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 1,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "ambiguous: it still hasn't come",
+   "category": "ambiguous",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-e03a807220d1"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 3 vs threshold 2; ambiguous (+1: refers to 'it' with no order identified), vague (+1: \"hasn't come\"), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 1,
+   "strong_calls": 1,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 1,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "complex: two orders, which is still on its way",
+   "category": "complex",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-86ff87c2ba8d"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 3 vs threshold 2; multi_order (+2: 2 orders), multi_intent (+1: status+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "complex: two orders, which is still on its way",
+   "category": "complex",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-1345422eaa34"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 3 vs threshold 2; multi_order (+2: 2 orders), multi_intent (+1: status+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "complex: two orders, which is still on its way",
+   "category": "complex",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-3e4f2c15223c"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 3 vs threshold 2; multi_order (+2: 2 orders), multi_intent (+1: status+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "complex: find the order, check the return, explain the refund",
+   "category": "complex",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-4af41a144e56"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 3 vs threshold 2; risk (+2: asks to send them back), multi_intent (+1: action+policy)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 5,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "complex: find the order, check the return, explain the refund",
+   "category": "complex",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-631967fd8c59"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 3 vs threshold 2; risk (+2: asks to send them back), multi_intent (+1: action+policy)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "complex: find the order, check the return, explain the refund",
+   "category": "complex",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-1b35605a5ff8"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 3 vs threshold 2; risk (+2: asks to send them back), multi_intent (+1: action+policy)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 6,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "policy exception: past the window, asks for an exception",
+   "category": "policy_exception",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-086669f0f3c7"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to return), exception (+2: 'exception'), multi_intent (+1: action+policy+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "policy exception: past the window, asks for an exception",
+   "category": "policy_exception",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-57f911052401"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to return), exception (+2: 'exception'), multi_intent (+1: action+policy+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "policy exception: past the window, asks for an exception",
+   "category": "policy_exception",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-e7f9ade08d57"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 5 vs threshold 2; risk (+2: asks to return), exception (+2: 'exception'), multi_intent (+1: action+policy+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "high risk: account hacked, cancel and refund",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-f09ced1c5759"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), sensitive (+2: 'hacked'), multi_intent (+1: action+policy+account+human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "high risk: account hacked, cancel and refund",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-fbacb623d6c4"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), sensitive (+2: 'hacked'), multi_intent (+1: action+policy+account+human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "high risk: account hacked, cancel and refund",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-962a5c68ce3c"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 5 vs threshold 2; risk (+2: asks to cancel), sensitive (+2: 'hacked'), multi_intent (+1: action+policy+account+human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "confirmation inherits: a bare yes after an unpreviewed return",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-c2b4d90bd721",
+    "REQ-062911475d1f"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 3,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "confirmation inherits: a bare yes after an unpreviewed return",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-c5975eac1f20",
+    "REQ-266850cf3bcd"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 3,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "confirmation inherits: a bare yes after an unpreviewed return",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-d2eb1da56fa7",
+    "REQ-164fd477c1b5"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "policy backstop: hacked account, the model forgets to escalate",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-3bf7e1772d15"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; sensitive (+2: \"didn't place\")"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)\n\nThis needs a human agent, so I've passed it on: ticket ESC-4417. A human agent will email you within 24 hours."
+  },
+  {
+   "case": "policy backstop: hacked account, the model forgets to escalate",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-7d2f38d36222"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; sensitive (+2: \"didn't place\")"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 3,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)\n\nThis needs a human agent, so I've passed it on: ticket ESC-4417. A human agent will email you within 24 hours."
+  },
+  {
+   "case": "policy backstop: hacked account, the model forgets to escalate",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-c33b924366f1"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; sensitive (+2: \"didn't place\")"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 3,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)\n\nThis needs a human agent, so I've passed it on: ticket ESC-4417. A human agent will email you within 24 hours."
+  },
+  {
+   "case": "escalate: an upset repeat customer",
+   "category": "escalate_human",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-e8351d2259ca"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 3 vs threshold 2; upset (+2: 'third time'), multi_intent (+1: human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 5,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "escalate: an upset repeat customer",
+   "category": "escalate_human",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-08ae18267f33"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 3 vs threshold 2; upset (+2: 'third time'), multi_intent (+1: human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "escalate: an upset repeat customer",
+   "category": "escalate_human",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-3694c62c92ba"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 3 vs threshold 2; upset (+2: 'third time'), multi_intent (+1: human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 2,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 2,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer approves: $348 return runs once",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-0368545bfa25",
+    "REQ-30f7773aece5"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     3,
+     3
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-30f7773aece5:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "approved"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer approves: $348 return runs once",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-dea7c6e80d2f",
+    "REQ-ac9f18dc8f7c"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     3,
+     3
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-ac9f18dc8f7c:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "approved"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer approves: $348 return runs once",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-f556d10d1c95",
+    "REQ-990458d4af55"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     3,
+     3
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-990458d4af55:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "approved"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer rejects: $249 cancellation never runs",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-0356afa39b69",
+    "REQ-6b97f39a7443"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-5555555-5555555 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-6b97f39a7443:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "rejected"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer rejects: $249 cancellation never runs",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-c7b93465f657",
+    "REQ-b4c63fdf10a4"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-5555555-5555555 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-b4c63fdf10a4:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "rejected"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer rejects: $249 cancellation never runs",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-b748607fca39",
+    "REQ-76505d0f24cf"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: score 5 vs threshold 2; risk (+2: asks to cancel), pending (+2: a cancel_order preview on 112-5555555-5555555 awaits the customer's answer), ambiguous (+1: refers to 'it' with no order identified)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-76505d0f24cf:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "rejected"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer requests changes: $200 return never runs",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-224cddd892a6",
+    "REQ-51280cd6a0e8"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-8888888-8888888 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-51280cd6a0e8:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "changes_requested"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer requests changes: $200 return never runs",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-4df42b37a7b3",
+    "REQ-0864b205b5b7"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-8888888-8888888 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-0864b205b5b7:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "changes_requested"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer requests changes: $200 return never runs",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-4d3ac5576084",
+    "REQ-14cb54477030"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-8888888-8888888 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-14cb54477030:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "changes_requested"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer never answers: $200 cancellation expires",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-40be71b5c250",
+    "REQ-49fb5dbc6b7b"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-6666666-6666666 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-4o-mini"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-4o-mini"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-49fb5dbc6b7b:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "expired"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer never answers: $200 cancellation expires",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-6565c504ba88",
+    "REQ-d3a1a97b4f68"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-6666666-6666666 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 4,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-d3a1a97b4f68:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "expired"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  },
+  {
+   "case": "reviewer never answers: $200 cancellation expires",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-b2f21ec35c50",
+    "REQ-9a35616de337"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     2,
+     2
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to cancel)",
+    "strong: score 5 vs threshold 2; pending (+2: a cancel_order preview on 112-6666666-6666666 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": null,
+   "tokens_out": null,
+   "cost": null,
+   "projected_cost": null,
+   "cost_sources": [
+    "unknown"
+   ],
+   "billed_cost": null,
+   "estimated_cost": null,
+   "unknown_cost_calls": 4,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra"
+   ],
+   "ms": 5,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-9a35616de337:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "expired"
+   ],
+   "error": null,
+   "reply": "(scripted reply)"
+  }
+ ]
+}

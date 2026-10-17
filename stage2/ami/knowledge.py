@@ -81,6 +81,21 @@ def _chunks():
     return out
 
 
+def lead(source):
+    """The opening rule of a document: the text under its # title, before
+    the first ## section. None if it has none.
+
+    Retrieval returns SECTIONS, and a section can be true but not the
+    answer: asked for "the return policy", the nearest chunk was "Items
+    that cannot be returned", and the reply never mentioned the 30-day
+    window — which is in the opening paragraph, not in any section. So
+    search_knowledge hands back each passage with its document's lead."""
+    for c in _chunks():
+        if c["source"] == source and "—" not in c["heading"]:
+            return c["text"]
+    return None
+
+
 # --------------------------------------------------------------------------
 # 2. embed  —  chromadb calls this itself, for documents and for questions
 # --------------------------------------------------------------------------

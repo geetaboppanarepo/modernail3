@@ -14,6 +14,9 @@ before the turn and written after it.
 HITL: each turn is a request in state/approvals.db; a large refund is
 left PENDING_APPROVAL for `python3 review.py` to decide, and the decision
 is folded in at the start of the next turn.
+
+Model routing: each turn is classified by ami/router.py (cheap or strong
+model); with the trace on, the decision and any escalation are printed.
 """
 
 import sys
@@ -24,8 +27,8 @@ from ami import approvals
 from ami import plan_execute
 from ami import planner
 from ami import policy
+from ami import router
 from ami.agent import respond
-from ami.llm import MODEL
 from ami.memory import ConversationMemory, LongTermMemory, WorkingMemory
 
 
@@ -47,7 +50,7 @@ def main():
     longterm = LongTermMemory()            # what we know about this customer
     mode = "baseline" if baseline else ("plan-execute" if use_plan else "ReAct")
 
-    print(f"[{profile.NAME} · {MODEL} · {mode}]  (ctrl-c or 'quit' to exit)\n")
+    print(f"[{profile.NAME} · {router.label()} · {mode}]  (ctrl-c or 'quit' to exit)\n")
     print(f"{profile.NAME}: {profile.GREETING}\n")
 
     while True:
@@ -73,7 +76,7 @@ def main():
             continue
 
         # policy: input
-        text, note = policy.check_input(user)
+        text, note = policy.check_input(user, work)
         work.turn += 1
         note = "\n\n".join(filter(None, [note, approvals.sync(work, work.session_id)])) or None
         earlier = [m["content"] for m in convo.history if m.get("role") == "user"][-6:]
@@ -81,21 +84,31 @@ def main():
         convo.add_user(text)
         print()
 
-        if baseline:
-            reply = respond(convo.messages(), verbose=trace)
-        elif use_plan:
-            reply = plan_execute.plan_execute(convo, work, trace=trace,
-                                              longterm=longterm, extra=note)
-        else:
-            reply = planner.react(convo, work, trace=trace,
-                                  longterm=longterm, extra=note)
+        route = router.begin(text, work, note)
+        if trace:
+            print(f"  [route] {route.decision['reason']}\n")
+        try:
+            if baseline:
+                reply = respond(convo.messages(), verbose=trace)
+            elif use_plan:
+                reply = plan_execute.plan_execute(convo, work, trace=trace,
+                                                  longterm=longterm, extra=note)
+            else:
+                reply = planner.react(convo, work, trace=trace,
+                                      longterm=longterm, extra=note)
+        finally:
+            routing = router.end()
+        if trace and routing["escalated"]:
+            print(f"  [route] escalated to strong: "
+                  f"{'; '.join(e['why'] for e in routing['escalations'])}\n")
 
-        # policy: output, then remember the customer
+        # policy: a human where policy says so; output; then remember the customer
+        reply = policy.enforce_handoff(reply, work)
         reply = policy.check_output(
             reply, work, text,
             context=longterm.recall(work.customer_email, work.session_id) or "")
         longterm.remember(work, session_id=work.session_id)
-        request = approvals.finish(request_id, reply)
+        request = approvals.finish(request_id, reply, routing)
 
         print(f"{profile.NAME}: {reply}\n")
         if request["status"] != approvals.COMPLETED:

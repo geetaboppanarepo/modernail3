@@ -351,7 +351,9 @@ def main():
     flat = [o for r in results for o in r["outcomes"]]
     passed = sum(r["passed"] for r in results)
     total = len(rows) * a.runs
-    agent_cost = sum(o["cost"] for o in flat)
+    # run_case reports None for a run whose cost is unknown (no usage, or an
+    # unpriced model); the total here is over the known ones.
+    agent_cost = sum(o["cost"] or 0 for o in flat)
     judge_cost = sum(o["judge_cost"] for o in flat)
 
     print(f"\n {'':<22} {_col(_mean([o['facts'] for o in flat]))} "

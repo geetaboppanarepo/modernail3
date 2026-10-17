@@ -1,0 +1,2475 @@
+{
+ "meta": {
+  "mode": "LIVE (provider at learn.modernaipro.com)",
+  "scripted": false,
+  "planner": "react",
+  "runs": 1,
+  "cheap": "gpt-4o-mini",
+  "strong": "gpt-5.6-terra",
+  "skipped": [
+   "status by order id",
+   "find by email",
+   "track shipped order",
+   "cancel needs confirmation",
+   "cancel after confirmation",
+   "confirmation cannot be faked in one turn",
+   "memory: no second lookup of the same order",
+   "guard: cancel shipped",
+   "guard: return past window",
+   "guard: authority claim",
+   "guard: no invented order",
+   "policy: injection ignored",
+   "policy: card number scrubbed",
+   "policy: escalate only once",
+   "rag: return window",
+   "rag: damaged package",
+   "out of scope",
+   "approval: return $348 headphones (over limit)",
+   "approval: cancel $249 vacuum (over limit)",
+   "approval: cancel exactly $200.00 (at limit)",
+   "approval: return exactly $200.00 (at limit)",
+   "no approval: cancel $149.99 Kindle (under limit)",
+   "no approval: cancel $199.99 (one cent under)",
+   "no approval: read-only lookup of a $348 order",
+   "no approval: find orders by email",
+   "no approval: support escalation opens an ESC ticket",
+   "no approval: over-limit return asked, not yet confirmed",
+   "no approval: cancel a $260 order that already shipped",
+   "faq: refund timing after a cancellation",
+   "faq: what cannot be returned",
+   "no escalation: a thank-you",
+   "no escalation: a quick tracking update",
+   "missing info: no tracking yet",
+   "missing info: status with no order number",
+   "ambiguous: a problem with no order",
+   "ambiguous: it still hasn't come",
+   "complex: two orders, which is still on its way",
+   "complex: find the order, check the return, explain the refund",
+   "escalate: an upset repeat customer",
+   "reviewer rejects: $249 cancellation never runs",
+   "reviewer requests changes: $200 return never runs",
+   "reviewer never answers: $200 cancellation expires"
+  ],
+  "stopped_at": null,
+  "max_cost": 1.0,
+  "date": "2026-10-16 23:38 CDT",
+  "comparison": [
+   "model-substitution",
+   "27 call(s) were served by a different model than requested: gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+  ],
+  "scope": "a TARGETED live re-run, 2026-10-16 23:38, AFTER the fixes: the 8 cases the fixes address plus 1 approval case (so the HITL gate is measured), 9 cases x 3 strategies. Not the full set: see routing_report.md for all 49 cases (before the fixes)."
+ },
+ "summaries": {
+  "cheap": {
+   "requests": 9,
+   "cost_kinds": {
+    "billed_cost": {
+     "known": 0,
+     "requests": 9,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "estimated_cost": {
+     "known": 9,
+     "requests": 9,
+     "total": 0.0663454,
+     "known_sum": 0.0663454,
+     "known_avg": 0.007371711111111111
+    },
+    "projected_cost": {
+     "known": 9,
+     "requests": 9,
+     "total": 0.005917425,
+     "known_sum": 0.005917425,
+     "known_avg": 0.0006574916666666666
+    }
+   },
+   "unknown_cost_requests": 0,
+   "failed_requests": 0,
+   "substituted_calls": 25,
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "cost_known": 9,
+   "total_cost": 0.0663454,
+   "known_cost_sum": 0.0663454,
+   "known_avg_cost": 0.007371711111111111,
+   "known_projected_avg": 0.0006574916666666666,
+   "avg_cost": 0.007371711111111111,
+   "cost_per_success": 0.007371711111111111,
+   "projected_known": 9,
+   "projected_total": 0.005917425,
+   "projected_avg": 0.0006574916666666666,
+   "tokens_in": 44333,
+   "tokens_out": 1975,
+   "avg_ms": 4985.777777777777,
+   "quality": 100.0,
+   "successes": 9,
+   "success_rate": 1.0,
+   "escalation_rate": 0.0,
+   "escalated": 0,
+   "calls": 25,
+   "strong_share": 0.0,
+   "fallbacks": 0,
+   "unavailable": 0,
+   "hitl": {
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "tn": 5,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "handoff": {
+    "tp": 6,
+    "fp": 0,
+    "fn": 0,
+    "tn": 3,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "routing_turns": 12,
+   "routing_accuracy": 1.0,
+   "under_routed": [],
+   "over_routed": [],
+   "dims": {
+    "policy": {
+     "passed": 20,
+     "checks": 20,
+     "rate": 1.0
+    },
+    "correct": {
+     "passed": 13,
+     "checks": 13,
+     "rate": 1.0
+    },
+    "grounded": {
+     "passed": 9,
+     "checks": 9,
+     "rate": 1.0
+    },
+    "complete": {
+     "passed": 1,
+     "checks": 1,
+     "rate": 1.0
+    }
+   },
+   "errors": []
+  },
+  "strong": {
+   "requests": 9,
+   "cost_kinds": {
+    "billed_cost": {
+     "known": 0,
+     "requests": 9,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "estimated_cost": {
+     "known": 9,
+     "requests": 9,
+     "total": 0.046046000000000004,
+     "known_sum": 0.046046000000000004,
+     "known_avg": 0.0051162222222222225
+    },
+    "projected_cost": {
+     "known": 9,
+     "requests": 9,
+     "total": 0.046046000000000004,
+     "known_sum": 0.046046000000000004,
+     "known_avg": 0.0051162222222222225
+    }
+   },
+   "unknown_cost_requests": 0,
+   "failed_requests": 0,
+   "substituted_calls": 0,
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "cost_known": 9,
+   "total_cost": 0.046046000000000004,
+   "known_cost_sum": 0.046046000000000004,
+   "known_avg_cost": 0.0051162222222222225,
+   "known_projected_avg": 0.0051162222222222225,
+   "avg_cost": 0.0051162222222222225,
+   "cost_per_success": 0.0051162222222222225,
+   "projected_known": 9,
+   "projected_total": 0.046046000000000004,
+   "projected_avg": 0.0051162222222222225,
+   "tokens_in": 46804,
+   "tokens_out": 2029,
+   "avg_ms": 4988.444444444444,
+   "quality": 100.0,
+   "successes": 9,
+   "success_rate": 1.0,
+   "escalation_rate": 0.0,
+   "escalated": 0,
+   "calls": 26,
+   "strong_share": 1.0,
+   "fallbacks": 0,
+   "unavailable": 0,
+   "hitl": {
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "tn": 5,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "handoff": {
+    "tp": 6,
+    "fp": 0,
+    "fn": 0,
+    "tn": 3,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "routing_turns": 12,
+   "routing_accuracy": 1.0,
+   "under_routed": [],
+   "over_routed": [],
+   "dims": {
+    "policy": {
+     "passed": 20,
+     "checks": 20,
+     "rate": 1.0
+    },
+    "correct": {
+     "passed": 13,
+     "checks": 13,
+     "rate": 1.0
+    },
+    "grounded": {
+     "passed": 9,
+     "checks": 9,
+     "rate": 1.0
+    },
+    "complete": {
+     "passed": 1,
+     "checks": 1,
+     "rate": 1.0
+    }
+   },
+   "errors": []
+  },
+  "route": {
+   "requests": 9,
+   "cost_kinds": {
+    "billed_cost": {
+     "known": 0,
+     "requests": 9,
+     "total": null,
+     "known_sum": null,
+     "known_avg": null
+    },
+    "estimated_cost": {
+     "known": 9,
+     "requests": 9,
+     "total": 0.0429374,
+     "known_sum": 0.0429374,
+     "known_avg": 0.0047708222222222225
+    },
+    "projected_cost": {
+     "known": 9,
+     "requests": 9,
+     "total": 0.04017385,
+     "known_sum": 0.04017385,
+     "known_avg": 0.004463761111111111
+    }
+   },
+   "unknown_cost_requests": 0,
+   "failed_requests": 0,
+   "substituted_calls": 2,
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "cost_known": 9,
+   "total_cost": 0.0429374,
+   "known_cost_sum": 0.0429374,
+   "known_avg_cost": 0.0047708222222222225,
+   "known_projected_avg": 0.004463761111111111,
+   "avg_cost": 0.0047708222222222225,
+   "cost_per_success": 0.0047708222222222225,
+   "projected_known": 9,
+   "projected_total": 0.04017385,
+   "projected_avg": 0.004463761111111111,
+   "tokens_in": 44368,
+   "tokens_out": 1889,
+   "avg_ms": 5107.222222222223,
+   "quality": 100.0,
+   "successes": 9,
+   "success_rate": 1.0,
+   "escalation_rate": 0.0,
+   "escalated": 0,
+   "calls": 25,
+   "strong_share": 0.92,
+   "fallbacks": 0,
+   "unavailable": 0,
+   "hitl": {
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "tn": 5,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "handoff": {
+    "tp": 6,
+    "fp": 0,
+    "fn": 0,
+    "tn": 3,
+    "hitl_recall": 1.0,
+    "escalation_precision": 1.0
+   },
+   "routing_turns": 12,
+   "routing_accuracy": 1.0,
+   "under_routed": [],
+   "over_routed": [],
+   "dims": {
+    "policy": {
+     "passed": 20,
+     "checks": 20,
+     "rate": 1.0
+    },
+    "correct": {
+     "passed": 13,
+     "checks": 13,
+     "rate": 1.0
+    },
+    "grounded": {
+     "passed": 9,
+     "checks": 9,
+     "rate": 1.0
+    },
+    "complete": {
+     "passed": 1,
+     "checks": 1,
+     "rate": 1.0
+    }
+   },
+   "errors": []
+  }
+ },
+ "rows": [
+  {
+   "case": "guard: return an undelivered order",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-f7af52ee1391",
+    "REQ-a4a85a26461b"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": 2947,
+   "tokens_out": 105,
+   "cost": 0.0019412000000000001,
+   "projected_cost": 0.00028785,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0019412000000000001,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 2,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 3096,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "I still need the reason for the return (for example, damaged, wrong item, or no longer needed). What should I put?"
+  },
+  {
+   "case": "guard: return an undelivered order",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-7309eff9b9cc",
+    "REQ-c288c8429f0b"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": 2927,
+   "tokens_out": 82,
+   "cost": 0.0015802,
+   "projected_cost": 0.0015802,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0015802,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 2871,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "Thanks\u2014what\u2019s the reason you\u2019d like to return it? I\u2019ll use that to check the return options before anything is submitted."
+  },
+  {
+   "case": "guard: return an undelivered order",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-e11c58af5245",
+    "REQ-89109241ff60"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": 2927,
+   "tokens_out": 90,
+   "cost": 0.0016762,
+   "projected_cost": 0.0016762,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0016762,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 3566,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "I\u2019ll need the reason for the return first (for example, damaged, wrong item, or no longer needed). Then I can preview the return details for you to approve."
+  },
+  {
+   "case": "rag: a regulation, not a policy",
+   "category": "policy_exception",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-1188511ecaee"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "correct": [
+     1,
+     1
+    ],
+    "policy": [
+     4,
+     4
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 4 vs threshold 2; risk (+2: asks to refund), sensitive (+2: 'my bank')"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 0,
+   "tokens_in": 5752,
+   "tokens_out": 264,
+   "cost": 0.0119252,
+   "projected_cost": 0.00090675,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0119252,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 3,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 6105,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "Because you\u2019ve already opened a dispute with your bank, I can\u2019t issue a second refund here. The **\u201cRefunds and chargebacks \u2014 A dispute belongs to the bank\u201d** regulation says these cases must be handled by the issuer to avoid a duplicate payment.\n\nA human agent will review it and email you within 24 hours. Your ticket is **ESC-4417**."
+  },
+  {
+   "case": "rag: a regulation, not a policy",
+   "category": "policy_exception",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-d9d6d2a555ab"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "correct": [
+     1,
+     1
+    ],
+    "policy": [
+     4,
+     4
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 4 vs threshold 2; risk (+2: asks to refund), sensitive (+2: 'my bank')"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5743,
+   "tokens_out": 256,
+   "cost": 0.0062474,
+   "projected_cost": 0.0062474,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0062474,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 5330,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "Because a bank dispute is already open, I can\u2019t issue a separate refund here; the payment case is handled through your card issuer to avoid a duplicate refund. This is based on our **Refunds and chargebacks** regulations guidance.\n\nA human agent will review it and email you within 24 hours. Your ticket is **ESC-4417**."
+  },
+  {
+   "case": "rag: a regulation, not a policy",
+   "category": "policy_exception",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-0a9f01dba3e5"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "correct": [
+     1,
+     1
+    ],
+    "policy": [
+     4,
+     4
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 4 vs threshold 2; risk (+2: asks to refund), sensitive (+2: 'my bank')"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5739,
+   "tokens_out": 256,
+   "cost": 0.006239399999999999,
+   "projected_cost": 0.006239399999999999,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.006239399999999999,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 5471,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "Because a bank dispute is already open, we can\u2019t issue a separate refund here\u2014the card issuer now handles the case to avoid a duplicate refund. This is based on our **Refunds and chargebacks** regulation.\n\nYour case is with a human agent under ticket **ESC-4417**. They\u2019ll review it and email you within 24 hours."
+  },
+  {
+   "case": "rag: a rule about the agent itself",
+   "category": "policy_exception",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-0f2bd0d4fb26"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 4 vs threshold 2; risk (+2: asks to refund), exception (+2: 'a second time')"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 0,
+   "tokens_in": 5870,
+   "tokens_out": 235,
+   "cost": 0.0117808,
+   "projected_cost": 0.0009057,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0117808,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 3,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 4917,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "A second refund needs review by a human agent, so I\u2019ve sent this under ticket **ESC-4417**. A human agent will review the short-refund concern and email you within 24 hours; I can\u2019t promise the outcome."
+  },
+  {
+   "case": "rag: a rule about the agent itself",
+   "category": "policy_exception",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-2fc753b9c742"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 4 vs threshold 2; risk (+2: asks to refund), exception (+2: 'a second time')"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5843,
+   "tokens_out": 255,
+   "cost": 0.0063490000000000005,
+   "projected_cost": 0.0063490000000000005,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0063490000000000005,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 5724,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry the first refund appears short. A human agent needs to review any second-refund request; the refund guidance says refunds return to the original payment method, while timing and posting are handled by the bank (from **Refunds and chargebacks \u2014 Timing**, a regulation guidance document).\n\nYour case is ticket **ESC-4417**. A human agent will review it and email you within 24 hours; I can\u2019t promise the outcome."
+  },
+  {
+   "case": "rag: a rule about the agent itself",
+   "category": "policy_exception",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-f866ea548671"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     3,
+     3
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 4 vs threshold 2; risk (+2: asks to refund), exception (+2: 'a second time')"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5860,
+   "tokens_out": 239,
+   "cost": 0.006191,
+   "projected_cost": 0.006191,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.006191,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 7058,
+   "needs_approval": null,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019ve sent this for human review under ticket **ESC-4417**. A human agent will review the short-refund concern and email you within 24 hours.\n\nThe refund guidance says refunds go back to the original payment method; a second refund needs review so we don\u2019t issue a duplicate payment."
+  },
+  {
+   "case": "faq: the return policy",
+   "category": "faq",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-5ee544a59a06"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "complete": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": 3246,
+   "tokens_out": 179,
+   "cost": 0.0034596,
+   "projected_cost": 0.00037845,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0034596,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 2,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 3264,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "Our **Returns policy** says most items can be returned within **30 days of delivery** for a full refund. The 30-day window starts from the delivery date shown in tracking, not the order date.\n\nSome items aren\u2019t eligible, including digital content, gift cards, downloadable software, perishables, final-sale items, and items damaged through misuse. If you share your order number, I can check the item and help start a return."
+  },
+  {
+   "case": "faq: the return policy",
+   "category": "faq",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-a3ade7e24fd7"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "complete": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": 3288,
+   "tokens_out": 137,
+   "cost": 0.0030396,
+   "projected_cost": 0.0030396,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0030396,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 2963,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "Amazon\u2019s **Returns policy** says most items can be returned within **30 days of delivery** for a full refund. The 30-day period starts on the delivery date shown in tracking, not the order date.\n\nSome items can\u2019t be returned, including digital content, gift cards, downloadable software, perishable goods, items marked final sale, and items damaged through misuse."
+  },
+  {
+   "case": "faq: the return policy",
+   "category": "faq",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-cc571f111c1d"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "complete": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "cheap"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "cheap"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: score 0 vs threshold 2; a plain request"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": 3290,
+   "tokens_out": 144,
+   "cost": 0.0031276000000000003,
+   "projected_cost": 0.00036405,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0031276000000000003,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 2,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 3164,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "Amazon\u2019s return policy: most items can be returned within **30 days of delivery** for a full refund. The 30-day period starts on the delivery date shown in tracking, not the order date.\n\nAs stated in **policies/returns.md**, digital content, gift cards, downloadable software, perishable goods, final-sale items, and items damaged through misuse generally can\u2019t be returned."
+  },
+  {
+   "case": "policy exception: past the window, asks for an exception",
+   "category": "policy_exception",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-a2b877ffd733"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to return), exception (+2: 'exception'), multi_intent (+1: action+policy+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 0,
+   "tokens_in": 5765,
+   "tokens_out": 287,
+   "cost": 0.0121966,
+   "projected_cost": 0.000921225,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0121966,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 3,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 6011,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry you\u2019ve been dealing with that. Our **Returns policy** normally allows returns within 30 days of delivery, so I can\u2019t approve an exception myself\u2014but a human agent will review your circumstances.\n\nYour case is ticket **ESC-4417**. They\u2019ll email you within 24 hours; I can\u2019t promise the outcome."
+  },
+  {
+   "case": "policy exception: past the window, asks for an exception",
+   "category": "policy_exception",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-d7ae1d02293e"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to return), exception (+2: 'exception'), multi_intent (+1: action+policy+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5769,
+   "tokens_out": 265,
+   "cost": 0.0063462,
+   "projected_cost": 0.0063462,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0063462,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 5127,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry you were in hospital. Under the **Returns \u2014 Outside the 30-day window** policy, the return period is counted from delivery and exceptions outside it must be reviewed by a human agent.\n\nYour request is with our team under ticket **ESC-4417**. They\u2019ll review it and email you within 24 hours; I can\u2019t promise the outcome."
+  },
+  {
+   "case": "policy exception: past the window, asks for an exception",
+   "category": "policy_exception",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-802fc23aa630"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     4,
+     4
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 5 vs threshold 2; risk (+2: asks to return), exception (+2: 'exception'), multi_intent (+1: action+policy+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5750,
+   "tokens_out": 273,
+   "cost": 0.0064042,
+   "projected_cost": 0.0064042,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0064042,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 5524,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry you\u2019ve been dealing with that. Under our **Returns policy**, most items have a 30-day return window from delivery, and exceptions outside that window require a human review\u2014we can\u2019t promise approval.\n\nYour request is with a human agent under ticket **ESC-4417**. They\u2019ll review it and email you within 24 hours."
+  },
+  {
+   "case": "high risk: account hacked, cancel and refund",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-f281e80c666b"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), sensitive (+2: 'hacked'), multi_intent (+1: action+policy+account+human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 0,
+   "tokens_in": 5641,
+   "tokens_out": 289,
+   "cost": 0.0119888,
+   "projected_cost": 0.0009044999999999999,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0119888,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 3,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 6188,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry this happened. Account-security cases need a human agent to review securely, so I\u2019ve sent this under ticket **ESC-4417**. A human agent will review it and email you within 24 hours; I can\u2019t promise the cancellation or refund outcome here."
+  },
+  {
+   "case": "high risk: account hacked, cancel and refund",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-a34968d474fd"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; risk (+2: asks to cancel), sensitive (+2: 'hacked'), multi_intent (+1: action+policy+account+human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": 8188,
+   "tokens_out": 431,
+   "cost": 0.009788600000000001,
+   "projected_cost": 0.009788600000000001,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.009788600000000001,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 7020,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry this happened. Under our account-safety policy, a hacked-account report needs review by a human agent, so I can\u2019t cancel or refund this order directly here.\n\nYour case is ticket **ESC-4417**. A human agent will review it and email you within 24 hours."
+  },
+  {
+   "case": "high risk: account hacked, cancel and refund",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-145fc4b40a5e"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 5 vs threshold 2; risk (+2: asks to cancel), sensitive (+2: 'hacked'), multi_intent (+1: action+policy+account+human+lookup)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5659,
+   "tokens_out": 258,
+   "cost": 0.0060764,
+   "projected_cost": 0.0060764,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0060764,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 5788,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry this happened. Under our account and payment safety handling rules, a human agent needs to review hacked-account reports before any order action can be taken.\n\nYour case is with ticket **ESC-4417**. A human agent will review it and email you within **24 hours**; I can\u2019t promise the cancellation or refund outcome yet."
+  },
+  {
+   "case": "confirmation inherits: a bare yes after an unpreviewed return",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-7d05a1886aea",
+    "REQ-bac2476f4114"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 0,
+   "tokens_in": 2947,
+   "tokens_out": 116,
+   "cost": 0.0019922,
+   "projected_cost": 0.000291075,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0019922,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 2,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 2953,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "I still need the reason for the return (for example, damaged, wrong item, or no longer needed). Please tell me in a few words, and I\u2019ll check the options."
+  },
+  {
+   "case": "confirmation inherits: a bare yes after an unpreviewed return",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-cb047fd487d7",
+    "REQ-3e029cd41ecc"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": 2947,
+   "tokens_out": 114,
+   "cost": 0.0019682,
+   "projected_cost": 0.0019682,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0019682,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 3961,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "I still need the reason for the return (for example, damaged, wrong item, or no longer needed). Then I can preview the return for you before making any changes."
+  },
+  {
+   "case": "confirmation inherits: a bare yes after an unpreviewed return",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-d3e2152080de",
+    "REQ-c467b2369429"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     1,
+     1
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: score 3 vs threshold 2; inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 2,
+   "strong_calls": 2,
+   "tokens_in": 2923,
+   "tokens_out": 101,
+   "cost": 0.0018073999999999998,
+   "projected_cost": 0.0018073999999999998,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0018073999999999998,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 3620,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [],
+   "error": null,
+   "reply": "I still need the reason for the return (for example, damaged, wrong item, or no longer needed). Once you share it, I\u2019ll check the return options before making any changes."
+  },
+  {
+   "case": "policy backstop: hacked account, the model forgets to escalate",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-276aee3aebf7"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "cheap"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; sensitive (+2: \"didn't place\")"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 0,
+   "tokens_in": 5602,
+   "tokens_out": 232,
+   "cost": 0.0057134,
+   "projected_cost": 0.0006347249999999999,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0057134,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 3,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 6283,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry this happened. Under our **Account and payment safety policy**, account-security concerns need a human review. Your case is already with our team under ticket **ESC-4417**; a human agent will email you within 24 hours."
+  },
+  {
+   "case": "policy backstop: hacked account, the model forgets to escalate",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-c09108ae9bae"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; sensitive (+2: \"didn't place\")"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5547,
+   "tokens_out": 237,
+   "cost": 0.005622,
+   "projected_cost": 0.005622,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.005622,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 5739,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry this happened. Under our **Account and payment safety policy**, account-security issues need a human agent so they can review them securely.\n\nYour case is already with the team under ticket **ESC-4417**. A human agent will review it and email you within 24 hours."
+  },
+  {
+   "case": "policy backstop: hacked account, the model forgets to escalate",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-9ca5c5decce6"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     1,
+     1
+    ],
+    "correct": [
+     2,
+     2
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong"
+   ],
+   "tiers": [
+    "strong"
+   ],
+   "classified": [
+    "strong"
+   ],
+   "final_tiers": [
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; sensitive (+2: \"didn't place\")"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 3,
+   "strong_calls": 3,
+   "tokens_in": 5642,
+   "tokens_out": 246,
+   "cost": 0.00592,
+   "projected_cost": 0.00592,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.00592,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 5302,
+   "needs_approval": false,
+   "approval_requested": false,
+   "requests": [],
+   "human": true,
+   "handed_off": true,
+   "escalation_ticket": "ESC-4417",
+   "review": [],
+   "error": null,
+   "reply": "I\u2019m sorry this happened. Under our **Account and payment safety policy**, account-security concerns are handled by a human agent to protect your information.\n\nYour case is with ticket **ESC-4417**. A human agent will review it and email you within 24 hours."
+  },
+  {
+   "case": "reviewer approves: $348 return runs once",
+   "category": "high_risk",
+   "strategy": "cheap",
+   "request_ids": [
+    "REQ-98dcc89e40e0",
+    "REQ-ed3f25108416"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     3,
+     3
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "cheap",
+    "cheap"
+   ],
+   "reasons": [
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "cheap: strategy=cheap (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 0,
+   "tokens_in": 6563,
+   "tokens_out": 268,
+   "cost": 0.0053476,
+   "projected_cost": 0.00068715,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0053476,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 4,
+   "model_pairs": [
+    "gpt-4o-mini -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-4o-mini"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 6055,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-ed3f25108416:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "approved"
+   ],
+   "error": null,
+   "reply": "Your return request is pending human approval because the $348.00 refund exceeds the automatic-approval limit. It\u2019s saved as request **REQ-ed3f25108416**, and a reviewer will decide by **October 17, 2026 at 08:37 UTC**."
+  },
+  {
+   "case": "reviewer approves: $348 return runs once",
+   "category": "high_risk",
+   "strategy": "strong",
+   "request_ids": [
+    "REQ-1ea7ee448663",
+    "REQ-dd987faf113e"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     3,
+     3
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: strategy=strong (fixed); the router would have chosen strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": 6552,
+   "tokens_out": 252,
+   "cost": 0.0051048,
+   "projected_cost": 0.0051048,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0051048,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 6161,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-dd987faf113e:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "approved"
+   ],
+   "error": null,
+   "reply": "Your return request has been submitted for review: **REQ-dd987faf113e**. Because the refund is **$348.00**, a human reviewer must approve it; they\u2019ll decide by **October 17, 2026, 08:37 UTC**."
+  },
+  {
+   "case": "reviewer approves: $348 return runs once",
+   "category": "high_risk",
+   "strategy": "route",
+   "request_ids": [
+    "REQ-f43f0bf5c4d7",
+    "REQ-b9b7d25d7e75"
+   ],
+   "pass": true,
+   "quality": 100.0,
+   "dims": {
+    "policy": [
+     2,
+     2
+    ],
+    "correct": [
+     3,
+     3
+    ],
+    "grounded": [
+     1,
+     1
+    ]
+   },
+   "fails": [],
+   "route_label": [
+    "strong",
+    "strong"
+   ],
+   "tiers": [
+    "strong",
+    "strong"
+   ],
+   "classified": [
+    "strong",
+    "strong"
+   ],
+   "final_tiers": [
+    "strong",
+    "strong"
+   ],
+   "reasons": [
+    "strong: score 2 vs threshold 2; risk (+2: asks to return)",
+    "strong: score 5 vs threshold 2; pending (+2: a start_return preview on 112-1111111-1111111 awaits the customer's answer), inherited (+2: a short reply to the previous turn, which was strong (risk)), unknown_intent (+1: no known support intent)"
+   ],
+   "escalated": false,
+   "escalations": [],
+   "fallbacks": 0,
+   "unavailable": false,
+   "calls": 4,
+   "strong_calls": 4,
+   "tokens_in": 6578,
+   "tokens_out": 282,
+   "cost": 0.0054952,
+   "projected_cost": 0.0054952,
+   "cost_sources": [
+    "configured"
+   ],
+   "billed_cost": null,
+   "estimated_cost": 0.0054952,
+   "unknown_cost_calls": 0,
+   "substituted_calls": 0,
+   "model_pairs": [
+    "gpt-5.6-terra -> gpt-5.6-terra-2026-07-09"
+   ],
+   "requested_models": [
+    "gpt-5.6-terra"
+   ],
+   "served_by": [
+    "gpt-5.6-terra-2026-07-09"
+   ],
+   "ms": 6472,
+   "needs_approval": true,
+   "approval_requested": true,
+   "requests": [
+    "REQ-b9b7d25d7e75:PENDING_APPROVAL"
+   ],
+   "human": false,
+   "handed_off": false,
+   "escalation_ticket": null,
+   "review": [
+    "approved"
+   ],
+   "error": null,
+   "reply": "Your return request is pending human approval because the $348.00 refund exceeds the automatic-approval limit. Your request number is **REQ-b9b7d25d7e75**; a reviewer will decide by **October 17, 2026, 08:38 UTC**."
+  }
+ ]
+}

@@ -106,6 +106,10 @@ class WorkingMemory:
         self.escalation = None  # ticket number, once we have one
         self.turn = 0           # user messages so far — the policy layer uses
         self.pending = None     # this to insist a confirmation spans a turn
+        self.mentioned = []     # order numbers the customer typed (policy.check_input)
+        self.handoff = None     # why policy requires a human this turn, if it does
+        self.route_context = None   # the last turn's routing (router.end), so a
+                                    # short "yes" inherits what it answers
 
     # -- writing ----------------------------------------------------------
 
@@ -182,7 +186,8 @@ class WorkingMemory:
         return {"customer_email": self.customer_email, "orders": self.orders,
                 "actions": self.actions, "failures": self.failures,
                 "escalation": self.escalation, "turn": self.turn,
-                "pending": self.pending}
+                "pending": self.pending, "mentioned": self.mentioned,
+                "route_context": self.route_context}
 
     @classmethod
     def from_dict(cls, data):
@@ -194,6 +199,8 @@ class WorkingMemory:
         w.escalation = data.get("escalation")
         w.turn = data.get("turn", 0)
         w.pending = data.get("pending")
+        w.mentioned = data.get("mentioned", [])
+        w.route_context = data.get("route_context")
         return w
 
     def __repr__(self):

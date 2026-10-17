@@ -12,8 +12,18 @@ Every request a customer makes moves through one lifecycle:
     RECEIVED -> DRAFTED -> COMPLETED                       no sign-off needed
     RECEIVED -> DRAFTED -> PENDING_APPROVAL
         -> APPROVED -> EXECUTING -> COMPLETED | FAILED      reviewer said yes
-        -> REJECTED -> COMPLETED                            reviewer said no
+        -> REJECTED -> COMPLETED                            reviewer said no, or
+                                                            asked for changes
         -> EXPIRED                                          nobody answered
+
+"Request changes" is a no with a note: the proposal is closed unexecuted
+(decision `changes_requested`), the agent tells the customer what the
+reviewer wants, and any revised action is a NEW proposal with a new
+review. A draft is never edited in place and then run on the old yes.
+
+Each request also keeps `routing`: which model tier drafted it, why, and
+what the turn's model calls cost (router.py). A reviewer can see that a
+proposal came from the cheap tier; it changes nothing about the review.
 
 Three rules hold no matter who calls what, or from which process:
 
@@ -75,6 +85,7 @@ from pathlib import Path
 
 from ami import ROOT          # the stage folder
 from ami import observe
+from ami import router
 from ami import store
 from ami import tools
 
@@ -122,13 +133,14 @@ CREATE TABLE IF NOT EXISTS requests (
     updated_at       TEXT NOT NULL,
     deadline         TEXT,
     reviewer         TEXT,
-    decision         TEXT,              -- approved | rejected
+    decision         TEXT,              -- approved | rejected | changes_requested
     decision_reason  TEXT,
     decided_at       TEXT,
     execution_status TEXT NOT NULL,     -- not_required | waiting | running
                                         -- | succeeded | failed | not_executed
     outcome          TEXT,              -- JSON: what the tool returned
-    notified         INTEGER NOT NULL DEFAULT 0   -- outcome told to the session
+    notified         INTEGER NOT NULL DEFAULT 0,  -- outcome told to the session
+    routing          TEXT               -- JSON: router summary of the drafting turn
 );
 CREATE TABLE IF NOT EXISTS events (
     seq         INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -201,7 +213,7 @@ class Approvals:
         with self._connect() as conn:
             conn.executescript(_SCHEMA)
             cols = {r["name"] for r in conn.execute("PRAGMA table_info(requests)")}
-            for col in ("basis", "orders_store"):    # a database made before the column
+            for col in ("basis", "orders_store", "routing"):   # made before the column
                 if col not in cols:
                     conn.execute(f"ALTER TABLE requests ADD COLUMN {col} TEXT")
 
@@ -258,7 +270,7 @@ class Approvals:
     @staticmethod
     def _dict(row):
         d = dict(row)
-        for k in ("args", "outcome", "context", "basis"):
+        for k in ("args", "outcome", "context", "basis", "routing"):
             if d.get(k):
                 d[k] = json.loads(d[k])
         return d
@@ -279,27 +291,41 @@ class Approvals:
                          "VALUES (?, ?, ?, ?)", (rid, now, RECEIVED, "customer"))
         return rid
 
-    def submit(self, rid, tool, args, reason, email=None):
+    def submit(self, rid, tool, args, reason, email=None, routing=None):
         """The agent drafted an action policy will not run unsupervised:
         record it and open the approval window. Nothing executes here."""
+        # Defence in depth: policy.guarded_run validated the call already,
+        # but nothing malformed is ever stored for a reviewer to approve.
+        problem = tools.validate(tool, args)
+        if problem:
+            raise ApprovalError(f"Not a valid {tool} proposal: {problem}")
         deadline = (self.clock() + self.timeout).astimezone(timezone.utc) \
             .isoformat(timespec="seconds")
+        drafted_by = (routing or {}).get("final_tier")
         with self._tx() as conn:
             row = self._row(conn, rid)
             self._move(conn, rid, row["status"], DRAFTED, "agent",
-                       f"proposed {tool}", tool=tool, args=json.dumps(args),
+                       f"proposed {tool}" + (f" (drafted by the {drafted_by} model tier)"
+                                             if drafted_by else ""),
+                       tool=tool, args=json.dumps(args),
                        policy_reason=reason, customer_email=email,
-                       basis=json.dumps(order_basis(args)))
+                       basis=json.dumps(order_basis(args)),
+                       routing=json.dumps(routing) if routing else None)
             self._move(conn, rid, DRAFTED, PENDING, "policy", reason,
                        deadline=deadline, execution_status="waiting")
         return self.get(rid)
 
-    def finish(self, rid, resolution):
+    def finish(self, rid, resolution, routing=None):
         """End of the agent's turn. A request that proposed nothing protected
-        is done; one waiting on a reviewer just keeps the reply for the audit."""
+        is done; one waiting on a reviewer just keeps the reply for the audit.
+        `routing` (router.end()) replaces the partial record saved with a
+        proposal: the same turn, now with every model call in it."""
         with self._tx() as conn:
             row = self._row(conn, rid)
             conn.execute("UPDATE requests SET resolution = ? WHERE id = ?", (resolution, rid))
+            if routing is not None:
+                conn.execute("UPDATE requests SET routing = ? WHERE id = ?",
+                             (json.dumps(routing), rid))
             if row["status"] == RECEIVED:
                 self._move(conn, rid, RECEIVED, DRAFTED, "agent")
                 self._move(conn, rid, DRAFTED, COMPLETED, "policy", "no approval required")
@@ -316,6 +342,18 @@ class Approvals:
         with self._tx() as conn:
             self._move(conn, rid, REJECTED, COMPLETED, "system", "rejected; not executed",
                        execution_status="not_executed")
+        return self.get(rid)
+
+    def request_changes(self, rid, reviewer, reason):
+        """Record "not like this": a no that says what would be acceptable.
+        Closes the proposal without running anything, like reject(); the
+        agent relays the note and any revision is a new proposal."""
+        if not isinstance(reason, str) or not reason.strip():
+            raise ApprovalError("Requesting changes needs a note saying what to change.")
+        self._decide(rid, reviewer, reason, REJECTED, "changes_requested")
+        with self._tx() as conn:
+            self._move(conn, rid, REJECTED, COMPLETED, "system",
+                       "changes requested; not executed", execution_status="not_executed")
         return self.get(rid)
 
     def _decide(self, rid, reviewer, reason, to, decision):
@@ -638,10 +676,10 @@ def begin(text, session_id=None, context=None):
     return rid
 
 
-def finish(rid, resolution):
+def finish(rid, resolution, routing=None):
     """A turn ends. Returns the request as it now stands."""
     _ctx.request = None
-    return default().finish(rid, resolution)
+    return default().finish(rid, resolution, routing)
 
 
 def propose(tool, args, reason, work):
@@ -671,7 +709,8 @@ def propose(tool, args, reason, work):
         rid = db.create(getattr(_ctx, "text", None) or f"(agent) {tool} {json.dumps(args)}",
                         getattr(_ctx, "session", None) or getattr(work, "session_id", None),
                         getattr(_ctx, "context", None))
-    rec = db.submit(rid, tool, args, reason, email=getattr(work, "customer_email", None))
+    rec = db.submit(rid, tool, args, reason, email=getattr(work, "customer_email", None),
+                    routing=router.snapshot())
     return {"pending_approval": True, "request_id": rid, "status": rec["status"],
             "deadline": rec["deadline"],
             "message": f"Not done yet: a human reviewer must approve this first "
@@ -705,6 +744,10 @@ def sync(work, session_id):
         elif r["status"] == FAILED:
             lines.append(f"- {r['id']}: approved, but the action was refused when it "
                          f"ran: {r['outcome'].get('error')}")
+        elif r["decision"] == "changes_requested":
+            lines.append(f"- {r['id']}: a reviewer asked for CHANGES: {r['decision_reason']}. "
+                         f"{what} was NOT done. Tell the customer what the reviewer "
+                         f"wants; a revised action needs their yes and a new review.")
         elif r["decision"] == "rejected":
             lines.append(f"- {r['id']}: REJECTED by a reviewer"
                          f"{': ' + r['decision_reason'] if r['decision_reason'] else ''}. "
@@ -736,6 +779,8 @@ def customer_view(r):
         label = "Approved, but it could not be completed"
     elif r["status"] == EXPIRED:
         label = "Not reviewed in time, so nothing was changed"
+    elif r["decision"] == "changes_requested":
+        label = "Staff asked for changes, so nothing was changed yet"
     elif r["decision"] == "rejected":
         label = "Not approved, so nothing was changed"
     elif r["execution_status"] == "succeeded":
@@ -768,6 +813,7 @@ def api(method, path, body=None, query=None, db=None):
         GET  /approvals/<id>                one request, with its audit trail
         POST /approvals/<id>/approve        {"reviewer", "reason"?} then resume
         POST /approvals/<id>/reject         {"reviewer", "reason"?}
+        POST /approvals/<id>/request-changes {"reviewer", "reason"}  closes it unexecuted
         POST /approvals/<id>/resume         run an approved action (idempotent)
         POST /approvals/sweep               expire overdue, resume approved
     """
@@ -793,6 +839,8 @@ def api(method, path, body=None, query=None, db=None):
                 return 200, db.resume(rid)
             if action == "reject":
                 return 200, db.reject(rid, body.get("reviewer"), body.get("reason"))
+            if action == "request-changes":
+                return 200, db.request_changes(rid, body.get("reviewer"), body.get("reason"))
             if action == "resume":
                 return 200, db.resume(rid)
         return 404, {"error": f"No route {method} {path}"}

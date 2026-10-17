@@ -10,6 +10,8 @@
     embedder                      a small embedding model that runs on the laptop
 
     llm, pricing      the single model entry point, and what a call costs
+    router            which model drafts a turn (cheap or strong), and why
+    route_eval        cost-vs-quality metrics for evals.py --compare
     observe           the trace log every model and tool call writes to
     dashboard         the /logs page for web.py
 

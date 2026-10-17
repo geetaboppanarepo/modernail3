@@ -319,3 +319,41 @@ def test_the_page_renders_approvals_from_server_fields_as_text(web):
     assert "innerHTML = '<div" in block and "+ a." not in block.split("textContent")[0]
     assert "entry review" in block and "entry esc" not in block
     assert TOKEN not in page and "X-Reviewer-Token" not in page
+
+
+# --------------------------------------------------------------------------
+# Model routing and "request changes"
+# --------------------------------------------------------------------------
+
+def test_chat_reports_the_routing_decision_and_saves_it(server, fake_llm):
+    fake_llm.script(Reply(content="It was delivered on Monday."))
+    code, body = Client(server).chat("What's the status of 112-1111111-1111111?")
+    assert code == 200
+    route = body["route"]
+    assert route["initial_tier"] == "cheap" and route["reason"].startswith("cheap")
+    assert "cost" not in route and "features" not in route   # the page gets no internals
+    saved = approvals.default().get(body["request_id"])["routing"]
+    assert saved["initial_tier"] == "cheap" and saved["reason"] == route["reason"]
+
+
+def test_a_money_moving_turn_is_routed_strong(server, fake_llm):
+    fake_llm.script(Reply(content="Shall I cancel it?"))
+    _, body = Client(server).chat("Cancel order 112-3333333-3333333")
+    assert body["route"]["initial_tier"] == "strong"
+
+
+def test_a_reviewer_requests_changes_and_nothing_runs(pending, server, ran):
+    customer, body = pending
+    rid = body["request_id"]
+    reviewer = Client(server, TOKEN)
+    assert reviewer.call("POST", f"/approvals/{rid}/request-changes", {"reviewer": "dana"})[0] == 400
+    assert Client(server).call("POST", f"/approvals/{rid}/request-changes",
+                               {"reviewer": "x", "reason": "y"})[0] == 403
+    code, r = reviewer.call("POST", f"/approvals/{rid}/request-changes",
+                            {"reviewer": "dana", "reason": "offer an exchange"})
+    assert code == 200 and r["decision"] == "changes_requested"
+    assert reviewer.call("POST", f"/approvals/{rid}/approve", {"reviewer": "sam"})[0] == 409
+    assert "start_return" not in ran
+    _, st = customer.call("GET", "/state")
+    assert st["approvals"][0]["label"] == "Staff asked for changes, so nothing was changed yet"
+    assert "exchange" not in json.dumps(st["approvals"])  # the note is relayed by the agent

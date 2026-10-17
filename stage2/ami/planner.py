@@ -19,11 +19,19 @@ That one change buys three things:
 Stage 2: every tool call goes through policy.guarded_run() instead of
 tools.run(), and the note injected before each step (notes()) also
 carries long-term memory and anything the input policy flagged.
+
+Model routing (router.py): the loop does not choose a model. It reports
+what it sees — a malformed call, a state-changing tool, an inadequate
+answer, a used-up step budget — and the turn's route may move the rest
+of the turn to the strong model, once. An inadequate cheap answer is
+dropped from the transcript and redrafted. When no model answers at
+all, the loop returns router.unavailable_reply().
 """
 
 import json
 
 from ami import policy
+from ami import router
 from ami import tools
 from ami.llm import MODEL, complete
 
@@ -99,16 +107,38 @@ def react(convo, work, trace=True, steps=None, longterm=None, extra=None):
     steps    : optional list; each step is appended as a dict so a caller
                (the web UI) can render the trace instead of printing it
     """
-    for step in range(1, MAX_STEPS + 1):
+    return _loop(convo, work, trace, steps, longterm, extra)
+
+
+def _loop(convo, work, trace, steps, longterm, extra):
+    step, budget = 0, MAX_STEPS
+    while True:
+        if step >= budget:
+            # Out of steps. A cheap route gets one strong attempt with a
+            # fresh budget; after that the loop ends, whatever the model.
+            if router.escalate("step budget used up"):
+                budget += MAX_STEPS
+            else:
+                break
+        step += 1
         # Working memory is re-read before EVERY step, so the agent plans
         # against what it has already established, not just the transcript.
-        response = complete(convo.messages(extra_system=notes(work, longterm, extra)),
-                            tools=SCHEMAS)
+        try:
+            response = complete(convo.messages(extra_system=notes(work, longterm, extra)),
+                                tools=SCHEMAS)
+        except router.ModelUnavailable:
+            return router.unavailable_reply(work)
         message = response.choices[0].message
         convo.add_assistant(message.model_dump(exclude_none=True))
 
         # No action requested -> the agent is done reasoning, this is the answer.
         if not message.tool_calls:
+            why = router.review_answer(message.content, work, convo, longterm)
+            if why and router.escalate(why):
+                convo.history.pop()          # the strong model redrafts it
+                if trace:
+                    print(f"  [route] {why} -> strong model\n")
+                continue
             return message.content
 
         for call in message.tool_calls:
@@ -117,11 +147,13 @@ def react(convo, work, trace=True, steps=None, longterm=None, extra=None):
                 args = json.loads(call.function.arguments or "{}")
             except json.JSONDecodeError:
                 args = {}
+                router.escalate(f"malformed arguments for {name}: not valid JSON")
 
             # Pull the reasoning out; it is for us, not for the tool.
             thought = args.pop("thought", "(no thought given)")
             result = policy.guarded_run(name, args, work)   # policy first, then the tool
             work.record(name, args, result)      # <- the observation updates what we know
+            router.tool_result(name, result)     # <- and may move the turn to strong
 
             if steps is not None:
                 steps.append({"n": step, "thought": thought, "tool": name,
@@ -169,41 +201,4 @@ def chains_of_thought(convo, work, trace=True, steps=None, longterm=None, extra=
     steps    : optional list; each step is appended as a dict so a caller
                (the web UI) can render the trace instead of printing it
     """
-    for step in range(1, MAX_STEPS + 1):
-        # Working memory is re-read before EVERY step, so the agent plans
-        # against what it has already established, not just the transcript.
-        response = complete(convo.messages(extra_system=notes(work, longterm, extra)),
-                            tools=SCHEMAS)
-        message = response.choices[0].message
-        convo.add_assistant(message.model_dump(exclude_none=True))
-
-        # No action requested -> the agent is done reasoning, this is the answer.
-        if not message.tool_calls:
-            return message.content
-
-        for call in message.tool_calls:
-            name = call.function.name
-            try:
-                args = json.loads(call.function.arguments or "{}")
-            except json.JSONDecodeError:
-                args = {}
-
-            # Pull the reasoning out; it is for us, not for the tool.
-            thought = args.pop("thought", "(no thought given)")
-            result = policy.guarded_run(name, args, work)   # policy first, then the tool
-            work.record(name, args, result)      # <- the observation updates what we know
-
-            if steps is not None:
-                steps.append({"n": step, "thought": thought, "tool": name,
-                              "args": args, "observation": result})
-
-            if trace:
-                arg_str = ", ".join(f"{k}={v!r}" for k, v in args.items())
-                print(f"  [{step}] Thought: {thought}")
-                print(f"      Action: {name}({arg_str})")
-                print(f"      Observation: {json.dumps(result)}\n")
-
-            convo.add_observation(call.id, result)
-
-    return ("I'm not able to sort this out myself. Let me get a human agent "
-            "to take a look.")
+    return _loop(convo, work, trace, steps, longterm, extra)

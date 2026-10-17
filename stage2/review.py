@@ -7,6 +7,9 @@ and moved on; this reads what it saved, possibly hours later.
     python3 review.py show REQ-...                 one request and its audit trail
     python3 review.py approve REQ-... --reviewer you [--reason ...] [--defer]
     python3 review.py reject  REQ-... --reviewer you [--reason ...]
+    python3 review.py revise  REQ-... --reviewer you --reason "what to change"
+                                                   request changes: closed unexecuted,
+                                                   the note goes back to the customer
     python3 review.py resume  REQ-...              run an approved action (idempotent)
     python3 review.py sweep                        expire overdue, run approved
     python3 review.py reconcile                    requests a crash left EXECUTING, and
@@ -38,6 +41,11 @@ def _print(r):
         print(f"    why:      {r['policy_reason']}")
     if r.get("basis"):
         print(f"    order as proposed: {json.dumps(r['basis'])}")
+    if r.get("routing"):
+        rt = r["routing"]
+        print(f"    drafted by: {', '.join(rt.get('models_used') or [rt.get('model') or '?'])} "
+              f"({rt.get('final_tier')} tier{', escalated' if rt.get('escalated') else ''}) — "
+              f"{rt.get('reason')}")
     if r["deadline"]:
         print(f"    deadline: {r['deadline']}" + ("   (OVERDUE)" if r.get("overdue") else ""))
     if r["decision"]:
@@ -57,11 +65,11 @@ def main():
     ls.add_argument("--all", action="store_true")
     for name in ("show", "resume"):
         sub.add_parser(name).add_argument("id")
-    for name in ("approve", "reject"):
+    for name in ("approve", "reject", "revise"):
         p = sub.add_parser(name)
         p.add_argument("id")
         p.add_argument("--reviewer", required=True)
-        p.add_argument("--reason")
+        p.add_argument("--reason", required=name == "revise")
         if name == "approve":
             p.add_argument("--defer", action="store_true")
     sub.add_parser("sweep")
@@ -94,6 +102,8 @@ def main():
             _print(r)
         elif a.cmd == "reject":
             _print(db.reject(a.id, a.reviewer, a.reason))
+        elif a.cmd == "revise":
+            _print(db.request_changes(a.id, a.reviewer, a.reason))
         elif a.cmd == "resume":
             _print(db.resume(a.id))
         elif a.cmd == "sweep":

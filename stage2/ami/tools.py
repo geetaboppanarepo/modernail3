@@ -156,9 +156,18 @@ def search_knowledge(question):
     obvious second one (a category to search within) was removed.
     """
     hits = knowledge.search(question, k=3)
-    return {"passages": [{"source": h["source"], "category": h["category"],
-                          "policy": h["heading"], "text": h["text"]}
-                         for h in hits]}
+    passages = []
+    for h in hits:
+        p = {"source": h["source"], "category": h["category"],
+             "policy": h["heading"], "text": h["text"]}
+        # The document's opening rule rides along with any section of it
+        # (knowledge.lead), so "the return policy" always arrives with
+        # the 30-day window, whichever section ranked first.
+        rule = knowledge.lead(h["source"]) if "—" in h["heading"] else None
+        if rule:
+            p["document_rule"] = rule
+        passages.append(p)
+    return {"passages": passages}
 
 
 def escalate(summary):
@@ -258,6 +267,41 @@ REGISTRY = {
 
 
 INTERNAL = {"op_id", "expect"}      # set by approvals.resume, never by the model
+
+_BY_NAME = {s["function"]["name"]: s["function"]["parameters"] for s in SCHEMAS}
+_TYPES = {"string": str, "boolean": bool, "integer": int, "number": (int, float),
+          "object": dict, "array": list}
+
+
+def validate(name, args):
+    """Why this call does not match the tool's schema, or None.
+
+    The schema the model was shown is the contract: a known tool, only the
+    properties it declares, every required one present and non-empty, each
+    of the declared JSON type. The internal arguments of an approved run
+    (op_id, expect) are refused by name — the model can never supply them."""
+    params = _BY_NAME.get(name)
+    if params is None:
+        return f"no such tool {name!r}"
+    if not isinstance(args, dict):
+        return "arguments must be a JSON object"
+    internal = sorted(INTERNAL & set(args))
+    if internal:
+        return (f"{', '.join(internal)} cannot be set by the model: they are "
+                f"set only by the approval workflow")
+    extra = sorted(set(args) - set(params["properties"]))
+    if extra:
+        return f"unexpected arguments {extra}"
+    missing = [k for k in params["required"] if args.get(k) in (None, "")]
+    if missing:
+        return f"missing required arguments {missing}"
+    for key, value in args.items():
+        want = _TYPES.get(params["properties"][key].get("type"))
+        bad = want is not None and (not isinstance(value, want) or
+                                    (want is not bool and isinstance(value, bool)))
+        if bad:
+            return f"{key} must be a {params['properties'][key]['type']}"
+    return None
 
 
 def run(name, args, **internal):
